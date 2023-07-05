@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/Home"
+        android:id="@+id/home"
+        android:icon="@drawable/home_icon"/>
+    <item android:title="@string/Budget"
+        android:id="@+id/Budget"
+        android:icon="@drawable/money_usd"/>
+    <item android:title="@string/History"
+        android:id="@+id/History"
+        android:icon="@drawable/credit_card_clock"/>
+    <item android:title="@string/Profile"
+        android:id="@+id/profile"
+        android:icon="@drawable/user_icon"/>
+</menu>

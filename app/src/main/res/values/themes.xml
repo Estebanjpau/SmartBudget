@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+
+    <style name="Theme.SmartBudget" parent="Base.Theme.SmartBudget">
+        <item name="android:statusBarColor">@color/lightGreen</item>
+        <item name="colorPrimary">@color/lightGreen</item>
+        <item name="android:colorBackground">@color/LightBackground</item>
+        <item name="android:fontFamily">@font/manrope_regular</item>
+        <item name="android:colorControlActivated">@color/lightGreen</item>
+        <item name="android:colorControlHighlight">@color/lightGreen</item>
+    </style>
+</resources>
