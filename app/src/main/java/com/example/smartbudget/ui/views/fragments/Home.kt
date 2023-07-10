@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.smartbudget.R
 import com.example.smartbudget.databinding.FragmentHomeBinding
+import com.example.smartbudget.databinding.FragmentProfileBinding
 import com.example.smartbudget.ui.views.contracts.FragmentContract
 
 class Home : Fragment(), FragmentContract {
@@ -24,7 +25,8 @@ class Home : Fragment(), FragmentContract {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     companion object {

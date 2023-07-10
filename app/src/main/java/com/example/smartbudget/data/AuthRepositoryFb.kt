@@ -1,13 +1,14 @@
 package com.example.smartbudget.data
 
+import com.example.smartbudget.viewmodel.auth.AuthRepository
 import com.google.firebase.auth.FirebaseAuth
 import io.reactivex.rxjava3.core.Completable
 
-class AuthRepository {
+class AuthRepositoryFb: AuthRepository {
 
     private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    fun register(email: String, password: String): Completable {
+    override fun registerFb(email: String, password: String): Completable {
         return Completable.create { notify ->
             firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
@@ -21,7 +22,7 @@ class AuthRepository {
         }
     }
 
-    fun login(email: String, password: String): Completable {
+    override fun loginFb(email: String, password: String): Completable {
         return Completable.create { notify ->
             firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
@@ -35,7 +36,7 @@ class AuthRepository {
         }
     }
 
-    fun logout(): Completable {
+    override fun logoutFb(): Completable {
         return Completable.create { notify ->
             firebaseAuth.signOut()
             notify.onComplete()

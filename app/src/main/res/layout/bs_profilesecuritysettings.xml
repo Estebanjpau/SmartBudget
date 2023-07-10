@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="30dp"
+    android:background="@drawable/bs_background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_changePassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:orientation="horizontal">
+
+        <ImageView android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/cellphone_key" />
+
+        <TextView
+            style="@style/Base.Theme.SmartBudget.Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="5dp"
+            android:text="@string/SettingsChangePassword" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:background="@color/light_grey" />
+
+    <LinearLayout
+        android:id="@+id/ll_enablePIN"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/lock_plus" />
+
+        <TextView
+            style="@style/Base.Theme.SmartBudget.Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="5dp"
+            android:text="@string/SettingEnablePIN" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:background="@color/light_grey" />
+
+</LinearLayout>

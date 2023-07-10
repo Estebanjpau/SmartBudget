@@ -1,16 +1,17 @@
-<resources>
-    <string name="app_name">Smart Budget</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="app_name">Smart Budget</string>
+
     <string name="Slogan">¡Gestiona tus finanzas sin estrés!</string>
-    <string name="Login">Inicia Sesion</string>
+    <string name="Login">Inicia Sesión</string>
     <string name="User">Usuario</string>
     <string name="Password">Contraseña</string>
     <string name="Remindme">Recuerdame</string>
-    <string name="ForgotPassword">Olvide mi contraseña</string>
+    <string name="ForgotPassword">Olvidé mi contraseña</string>
     <string name="OrLoginWith">o puedes iniciar sesión con</string>
     <string name="noAccount">¿No tienes cuenta?,</string>
-    <string name="Signin"> ¡Registrate aquí!</string>
+    <string name="Signin"> ¡Regístrate aquí!</string>
     <string name="authGoogle"> Autenticarse con Google</string>
     <string name="authFacebook"> Autenticarse con Facebook </string>
     <string name="authLindkedIn"> Autenticarse con Linkedin </string>
@@ -18,27 +19,34 @@
     <string name="Home">Inicio</string>
     <string name="History">Historial</string>
     <string name="Budget">Presupuestos</string>
-    <string name="Profile">Perfil</string>
+    <string name="Settings">Configuración</string>
 
-    <string name="hello_home">¡Hola!, que gusto verte de nuevo</string>
-    <string name="suscription">Tus suscripciones</string>
-    <string name="lastTransactions">Ultimos movimientos</string>
-    <string name="SeeMore">Ver más…</string>
+    <string name="Homehello">¡Hola!, que gusto verte de nuevo</string>
+    <string name="HomeMovements">¡No olvides registrar aquí tus movimientos!</string>
+    <string name="HomeNewTransaction">Registrar un movimiento</string>
+    <string name="HomelastTransactions">Ultimos movimientos</string>
+    <string name="HomeSuscription">Tus suscripciones</string>
+    <string name="HomeSeeMore">Ver más…</string>
+
+    <string name="NoHistory">Ups, parece que aún no hay nada que mostrar</string>
 
     <string name="WithoutBudgets">Ups, parece que aún no has definido ningun presupuesto</string>
     <string name="NewBudget">Crear presupuesto</string>
     <string name="FABBudget">Crear presupuesto</string>
 
-    <string name="NoHistory">Ups, parece que aún no hay nada que mostrar</string>
-
-    <string name="SettingsAccount">Cuenta</string>
     <string name="SettingsTags">Etiquetas</string>
     <string name="SettingsCurrency">Seleccionar moneda por defecto</string>
     <string name="SettingEnableDarkMode">Modo Oscuro</string>
-    <string name="SettingEnablePIN">Habilitar clave de 4 digitos</string>
+    <string name="SettingSecurity"> Seguridad</string>
+    <string name="SettingAboutUs"> Acerca de Smart Budget</string>
+    <string name="SettingEnablePIN">Habilitar clave de 4 dígitos</string>
+    <string name="SettingsChangePassword">Cambiar Contraseña</string>
     <string name="SettingsHelp">Ayuda</string>
+    <string name="SettingsInfo">Información</string>
     <string name="SettingsTermsOfUse">Terminos y condiciones del usuario</string>
-    <string name="SettingsPrivacyPolicy">Politicas de privacidad</string>
+    <string name="SettingsPrivacyPolicy">Políticas de privacidad</string>
+    <string name="SettingsAccount">Cuenta</string>
+    <string name="SettingsLogout">Cerrar Sesión</string>
 
     <string name="Continue">Continuar</string>
 

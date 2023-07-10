@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.views.fragments.Home">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -17,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:gravity="center_horizontal"
-            android:text="@string/hello_home"
+            android:text="@string/Homehello"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -46,6 +50,68 @@
 
         </androidx.cardview.widget.CardView>
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/movements"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:elevation="3dp"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintTop_toBottomOf="@id/cv_balance"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_lastTransactions">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/Base.Theme.SmartBudget.Paragraph"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/HomeMovements" />
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/rocket_collor" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_margin="30dp"
+                        android:background="@drawable/shape_rounded"
+                        android:layout_gravity="center_vertical"
+                        android:text="Agregar movimiento"
+                        style="@style/Base.Theme.SmartBudget.Subtitle2"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
         <TextView
             android:id="@+id/tv_lastTransactions"
             style="@style/Base.Theme.SmartBudget.Subtitle"
@@ -53,10 +119,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:gravity="center_horizontal"
-            android:text="@string/lastTransactions"
+            android:text="@string/HomelastTransactions"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cv_balance" />
+            app:layout_constraintTop_toBottomOf="@+id/movements" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_lastTransactions"
@@ -85,8 +151,7 @@
                     android:layout_margin="10dp"
                     style="@style/Base.Theme.SmartBudget.Text"
                     android:textColor="@color/lightBlue"
-                    android:text="@string/SeeMore"/>
-
+                    android:text="@string/HomeSeeMore"/>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -98,7 +163,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:gravity="center_horizontal"
-            android:text="@string/suscription"
+            android:text="@string/HomeSuscription"
             app:layout_constraintBottom_toTopOf="@id/sv_options"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -213,5 +278,7 @@
         </HorizontalScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </FrameLayout>

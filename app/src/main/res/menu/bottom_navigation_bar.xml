@@ -10,7 +10,7 @@
     <item android:title="@string/History"
         android:id="@+id/History"
         android:icon="@drawable/credit_card_clock"/>
-    <item android:title="@string/Profile"
+    <item android:title="@string/Settings"
         android:id="@+id/profile"
-        android:icon="@drawable/user_icon"/>
+        android:icon="@drawable/cog"/>
 </menu>
