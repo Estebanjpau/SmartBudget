@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_itemAmount"
+        style="@style/Base.Theme.SmartBudget.Subtitle2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_weight="1"
+        android:textColor="@color/Red"
+        android:text="monto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_itemDate"
+        style="@style/Base.Theme.SmartBudget.Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:text="Fecha"
+        app:layout_constraintBottom_toTopOf="@+id/tv_Category"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_Category"
+        style="@style/Base.Theme.SmartBudget.Paragraph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:text="Fecha"
+        app:layout_constraintStart_toStartOf="@+id/tv_itemAmount"
+        app:layout_constraintTop_toBottomOf="@+id/tv_itemAmount" />
+
+    <TextView
+        android:id="@+id/tv_itemDescription"
+        style="@style/Base.Theme.SmartBudget.Paragraph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="descripcion"
+        app:layout_constraintEnd_toEndOf="@+id/tv_itemDate"
+        app:layout_constraintTop_toTopOf="@+id/tv_Category" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/light_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_itemDescription" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

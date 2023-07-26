@@ -1,36 +1,43 @@
 package com.example.smartbudget.ui.views.fragments
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.smartbudget.domain.FirebaseDataRepository
-import com.example.smartbudget.domain.FirebaseRepository
+import com.example.smartbudget.R
+import com.example.smartbudget.data.models.SubscriptionData
 import com.example.smartbudget.data.models.TransactionData
-import com.example.smartbudget.databinding.FragmentHistoryBinding
-import com.example.smartbudget.ui.views.contracts.FragmentContract
+import com.example.smartbudget.databinding.FragmentSubscriptionsBinding
+import com.example.smartbudget.domain.FirebaseRepository
+import com.example.smartbudget.domain.FirebaseSubscriptionDataRepo
 import com.example.smartbudget.ui.views.models.HistoryTransactionListAdapter
+import com.example.smartbudget.ui.views.models.SubscriptionListAdapter
+import com.example.smartbudget.ui.views.popups.DialogNewSubscription
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class History : Fragment(), FragmentContract {
+class Subscriptions : Fragment() {
 
     @Inject
-    lateinit var firebaseDataRepository: FirebaseDataRepository
+    lateinit var dialogHomeNewSubscription: DialogNewSubscription
+
+    lateinit var binding: FragmentSubscriptionsBinding
+    private lateinit var subscriptionList: MutableList<SubscriptionData>
+    private lateinit var subscriptionAdapter: SubscriptionListAdapter
 
     @Inject
     lateinit var firebaseRepository: FirebaseRepository
 
-    private lateinit var binding: FragmentHistoryBinding
-    private lateinit var transactionList: MutableList<TransactionData>
-    private lateinit var transactionAdapter: HistoryTransactionListAdapter
+    @Inject
+    lateinit var firebaseSubscriptionDataRepo: FirebaseSubscriptionDataRepo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,9 +49,8 @@ class History : Fragment(), FragmentContract {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentHistoryBinding.inflate(inflater,container,false)
+        binding = FragmentSubscriptionsBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,41 +58,31 @@ class History : Fragment(), FragmentContract {
 
         CoroutineScope(Dispatchers.IO).launch {
             setupRecyclerView()
-
-            //FUNCION SIN PROBAR
-            if (transactionList.isEmpty()){
-                binding.clNothingToShow.visibility = View.VISIBLE
-                binding.clHistory.visibility = View.GONE
-            } else {
-                binding.clNothingToShow.visibility = View.GONE
-                binding.clHistory.visibility = View.VISIBLE
-            }
         }
-    }
-
-    override fun display() {
-        TODO("Not yet implemented")
+        binding.button.setOnClickListener {
+            dialogHomeNewSubscription.show(requireFragmentManager(), "Movimiento")
+        }
     }
 
     private suspend fun setupRecyclerView(){
         val getCurrentSession = firebaseRepository.checkUserSession()
         if (getCurrentSession) {
             withContext(Dispatchers.IO) {
-                val emptyList: MutableList<TransactionData> = mutableListOf()
-                transactionList =
-                    firebaseDataRepository.downloadTransactionData()?.sortedByDescending { it.timestamp }
-                        ?.toMutableList()
+                val emptyList: MutableList<SubscriptionData> = mutableListOf()
+                subscriptionList =
+                    firebaseSubscriptionDataRepo.downloadSubscriptionData().sortedByDescending { it.subscription }
+                        .toMutableList()
                         ?: emptyList
             }
 
-            transactionAdapter = HistoryTransactionListAdapter(transactionList)
+            subscriptionAdapter = SubscriptionListAdapter(subscriptionList)
 
             withContext(Dispatchers.Main) {
-                binding.rvTransactionHistory.apply {
+                binding.rvSubscriptions.apply {
                     layoutManager = LinearLayoutManager(context)
-                    adapter = transactionAdapter
+                    adapter = subscriptionAdapter
                 }
-                transactionAdapter.notifyDataSetChanged()
+                subscriptionAdapter.notifyDataSetChanged()
             }
         }
     }

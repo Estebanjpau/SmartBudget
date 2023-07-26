@@ -7,16 +7,18 @@
     tools:context=".ui.views.fragments.History">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_nothingToShow"
+        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tv_budget"
+            android:id="@+id/tv_budgetni"
             style="@style/Base.Theme.SmartBudget.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:textColor="@color/lightGreen"
+            android:textColor="@color/Green"
             android:text="@string/History"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,8 +54,66 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_history"
+        android:visibility="visible"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_budget"
+            style="@style/Base.Theme.SmartBudget.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@string/History"
+            android:textColor="@color/Green"
+            app:layout_constraintBottom_toTopOf="@id/spinner_filter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_filtro"
+            style="@style/Base.Theme.SmartBudget.Subtitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/HistorySortBy"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/spinner_filter"
+            app:layout_constraintTop_toTopOf="@+id/spinner_filter" />
+
+        <Spinner
+            android:id="@+id/spinner_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="27dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="40dp"
+            style="@style/Base.Theme.SmartBudget.Subtitle2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_budget" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="20dp"
+            app:cardElevation="3dp"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_filter">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_transactionHistory"
+                style="@style/Base.Theme.SmartBudget.Text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp" />
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

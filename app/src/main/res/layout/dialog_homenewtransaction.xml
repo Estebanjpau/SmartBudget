@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp">
+
+        <TextView
+            android:id="@+id/dialogTitle"
+            style="@style/Base.Theme.SmartBudget.Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/HomeNewTransaction"
+            android:textColor="@color/Green"
+            app:layout_constraintBottom_toTopOf="@id/ll_amount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/ll_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/dialogTitle">
+
+            <EditText
+                android:id="@+id/et_amount"
+                style="@style/Base.Theme.SmartBudget.Subtitle2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/ed_stroke"
+                android:gravity="center"
+                android:hint="@string/HomeNewTransactionAmount"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/tv_errorAmount"
+                style="@style/Base.Theme.SmartBudget.Paragraph"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/HomeNewTransactionAmountError"
+                android:textColor="@color/lightRed"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/Base.Theme.SmartBudget.Subtitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@string/HomeNewTransactionCategory"
+            app:layout_constraintEnd_toStartOf="@id/spinner_category"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ll_amount" />
+
+        <Spinner
+            android:id="@+id/spinner_category"
+            android:layout_width="140dp"
+            android:layout_height="28dp"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+        <EditText
+            android:id="@+id/et_description"
+            style="@style/Base.Theme.SmartBudget.Subtitle2"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/ed_stroke"
+            android:gravity="center"
+            android:hint="@string/HomeNewTransactionDescription"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_category" />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            style="@style/Base.Theme.SmartBudget.Subtitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:text="@string/Cancel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_continue" />
+
+        <Button
+            android:id="@+id/btn_continue"
+            style="@style/Base.Theme.SmartBudget.Subtitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginVertical="20dp"
+            android:text="@string/Continue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_description" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/Base.Theme.SmartBudget.Subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:text="@string/AddSubscription"
+        android:textColor="@color/Green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title">
+
+        <AutoCompleteTextView
+            android:id="@+id/ac_subscriptionTitle"
+            style="@style/Base.Theme.SmartBudget.Subtitle2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="@color/black"
+            android:background="@drawable/ed_stroke"
+            android:gravity="center"
+            android:hint="@string/SubscriptionTitle" />
+
+        <TextView
+            android:id="@+id/tv_errorTitle"
+            style="@style/Base.Theme.SmartBudget.Paragraph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="@string/SubscriptionTitleError"
+            android:textColor="@color/lightRed"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:gravity="fill_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_subscriptionCategory"
+                style="@style/Base.Theme.SmartBudget.Subtitle2"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/SubscriptionCategory" />
+
+            <Spinner
+                android:id="@+id/spinner_subscriptionCategory"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                app:layout_constraintStart_toStartOf="@+id/et_subscriptionTitle"
+                app:layout_constraintTop_toBottomOf="@+id/et_subscriptionTitle" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_subscriptionAmount"
+            style="@style/Base.Theme.SmartBudget.Subtitle2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/ed_stroke"
+            android:gravity="center"
+            android:inputType="number"
+            android:hint="@string/SubscriptionSetAmount"
+            app:layout_constraintStart_toStartOf="@+id/spinner_subscriptionCategory"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_subscriptionCategory" />
+
+        <TextView
+            android:id="@+id/tv_errorAmount"
+            style="@style/Base.Theme.SmartBudget.Paragraph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="@string/SubscriptionAmountError"
+            android:textColor="@color/lightRed"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_subscriptionInitDate"
+        style="@style/Base.Theme.SmartBudget.Subtitle2"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginVertical="20dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="@string/SubscriptionSelectBillingDate"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:layout_marginEnd="20dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <com.shawnlin.numberpicker.NumberPicker
+            android:id="@+id/np_subscriptionInitDate"
+            android:layout_width="40dp"
+            android:layout_height="70dp"
+            android:divider="@color/dark_grey"
+            app:np_dividerColor="@color/grey"
+            app:np_dividerDistance="40dp"
+            app:np_dividerLength="70dp"
+            app:np_dividerThickness="2dp"
+            app:np_fadingEdgeEnabled="true"
+            app:np_itemSpacing="5dp"
+            app:np_max="30"
+            app:np_min="1"
+            app:np_textColor="@color/dark_grey"
+            app:np_textSize="16sp"
+            app:np_value="1" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_pickbgColor"
+        style="@style/Base.Theme.SmartBudget.Paragraph"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginVertical="10dp"
+        android:gravity="center"
+        android:text="@string/SubscriptionPickBackground"
+        app:layout_constraintStart_toStartOf="@+id/tv_subscriptionInitDate"
+        app:layout_constraintTop_toBottomOf="@+id/cv_bgcWhite" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_bgcWhite"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginVertical="30dp"
+        app:cardBackgroundColor="@color/LightBackground"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toStartOf="@+id/tv_subscriptionInitDate"
+        app:layout_constraintTop_toBottomOf="@+id/tv_subscriptionInitDate">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="30dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_bgcYellow"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="10dp"
+        app:cardBackgroundColor="@color/LightBackground"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toEndOf="@+id/cv_bgcWhite"
+        app:layout_constraintTop_toTopOf="@+id/cv_bgcWhite">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:backgroundTint="@color/lightYellow"
+            app:cardCornerRadius="30dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_bgcPurple"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="10dp"
+        app:cardBackgroundColor="@color/LightBackground"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toEndOf="@+id/cv_bgcYellow"
+        app:layout_constraintTop_toTopOf="@+id/cv_bgcWhite">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/lightPurple"
+            app:cardCornerRadius="30dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_bgcRed"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="10dp"
+        app:cardBackgroundColor="@color/LightBackground"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toEndOf="@+id/cv_bgcPurple"
+        app:layout_constraintTop_toTopOf="@+id/cv_bgcWhite">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/lightRed"
+            app:cardCornerRadius="30dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_bgBlue"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="10dp"
+        app:cardBackgroundColor="@color/LightBackground"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toEndOf="@+id/cv_bgcRed"
+        app:layout_constraintTop_toTopOf="@+id/cv_bgcWhite">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/lightBlue"
+            app:cardCornerRadius="30dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_bgGreen"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="10dp"
+        app:cardBackgroundColor="@color/LightBackground"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toEndOf="@+id/cv_bgBlue"
+        app:layout_constraintTop_toTopOf="@+id/cv_bgcWhite">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/LightGreen"
+            app:cardCornerRadius="30dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        style="@style/Base.Theme.SmartBudget.Subtitle2"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:gravity="center"
+        android:text="@string/Cancel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_continue" />
+
+    <Button
+        android:id="@+id/btn_continue"
+        style="@style/Base.Theme.SmartBudget.Button1"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginVertical="20dp"
+        android:text="@string/Continue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_pickbgColor" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tamaño deseado del espacio entre números -->
+    <dimen name="number_picker_divider_height">16dp</dimen>
+</resources>

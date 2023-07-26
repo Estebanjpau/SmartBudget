@@ -3,6 +3,11 @@
 
     <string name="app_name">Smart Budget</string>
 
+    <string name="Cancel">Cancelar</string>
+    <string name="Continue">Continuar</string>
+    <string name="Back">Regresar</string>
+    <string name="Accept">Accept</string>
+
     <string name="Slogan">¡Gestiona tus finanzas sin estrés!</string>
     <string name="Login">Inicia Sesión</string>
     <string name="User">Usuario</string>
@@ -23,12 +28,27 @@
 
     <string name="Homehello">¡Hola!, que gusto verte de nuevo</string>
     <string name="HomeMovements">¡No olvides registrar aquí tus movimientos!</string>
-    <string name="HomeNewTransaction">Registrar un movimiento</string>
+    <string name="HomeNewTransaction">Agregar movimiento</string>
+    <string name="HomeNewTransactionCategory">Categoria</string>
+    <string name="HomeNewTransactionAmount">Ingrese el monto</string>
+    <string name="HomeNewTransactionAmountError">No has ingresado un monto</string>
+    <string name="HomeNewTransactionDescription">Ingrese una descripcion</string>
     <string name="HomelastTransactions">Ultimos movimientos</string>
     <string name="HomeSuscription">Tus suscripciones</string>
     <string name="HomeSeeMore">Ver más…</string>
 
+    <string name="SubscriptionHead">Suscripciones</string>
+    <string name="AddSubscription">Agregar suscripción</string>
+    <string name="SubscriptionTitleError">Debes ingresar un nombre</string>
+    <string name="SubscriptionSetAmount">Ingresar Monto Mensual</string>
+    <string name="SubscriptionAmountError">Debes ingresar un monto</string>
+    <string name="SubscriptionSelectBillingDate">Fecha de cobro</string>
+    <string name="SubscriptionPickBackground">Seleccionar color de fondo</string>
+    <string name="SubscriptionTitle">Suscripcion</string>
+    <string name="SubscriptionCategory">Categoria</string>
+
     <string name="NoHistory">Ups, parece que aún no hay nada que mostrar</string>
+    <string name="HistorySortBy">Ordenar por</string>
 
     <string name="WithoutBudgets">Ups, parece que aún no has definido ningun presupuesto</string>
     <string name="NewBudget">Crear presupuesto</string>
@@ -47,7 +67,5 @@
     <string name="SettingsPrivacyPolicy">Políticas de privacidad</string>
     <string name="SettingsAccount">Cuenta</string>
     <string name="SettingsLogout">Cerrar Sesión</string>
-
-    <string name="Continue">Continuar</string>
 
 </resources>

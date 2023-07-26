@@ -11,5 +11,3 @@ class LoginUseCase @Inject constructor(private val authRepository: AuthRepositor
             .onErrorComplete()
     }
 }
-
-data class LoginResult(val success: Boolean, val authToken: String? = null, val errorMessage: String? = null)

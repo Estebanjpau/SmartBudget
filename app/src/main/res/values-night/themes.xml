@@ -1,11 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.SmartBudget" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:statusBarColor">@color/lightGreen</item>
-        <item name="colorPrimary">@color/lightGreen</item>
+        <item name="android:statusBarColor">@color/Green</item>
+        <item name="colorPrimary">@color/Green</item>
         <item name="android:colorBackground">@color/LightBackground</item>
         <item name="android:fontFamily">@font/manrope_regular</item>
-        <item name="android:colorControlActivated">@color/lightGreen</item>
-        <item name="android:colorControlHighlight">@color/lightGreen</item>
+        <item name="android:colorControlActivated">@color/Green</item>
+        <item name="android:colorControlHighlight">@color/Green</item>
     </style>
 </resources>

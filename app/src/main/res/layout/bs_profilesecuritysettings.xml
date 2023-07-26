@@ -14,8 +14,9 @@
         android:clickable="true"
         android:orientation="horizontal">
 
-        <ImageView android:layout_width="35dp"
-            android:layout_height="35dp"
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="@drawable/cellphone_key" />
 
         <TextView
@@ -23,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginHorizontal="5dp"
+            android:layout_marginHorizontal="10dp"
             android:text="@string/SettingsChangePassword" />
 
     </LinearLayout>
@@ -43,8 +44,8 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="@drawable/lock_plus" />
 
         <TextView
@@ -52,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginHorizontal="5dp"
+            android:layout_marginHorizontal="10dp"
             android:text="@string/SettingEnablePIN" />
 
     </LinearLayout>
