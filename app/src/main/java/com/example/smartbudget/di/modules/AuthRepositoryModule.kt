@@ -1,4 +1,4 @@
-package com.example.smartbudget.di
+package com.example.smartbudget.di.modules
 
 import com.example.smartbudget.data.AuthRepositoryFb
 import com.example.smartbudget.viewmodel.auth.AuthRepository

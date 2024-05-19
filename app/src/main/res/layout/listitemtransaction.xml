@@ -19,7 +19,7 @@
 
     <TextView
         android:id="@+id/tv_itemDate"
-        style="@style/Base.Theme.SmartBudget.Text"
+        style="@style/Base.Theme.SmartBudget.TextM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
@@ -30,7 +30,7 @@
 
     <TextView
         android:id="@+id/tv_Category"
-        style="@style/Base.Theme.SmartBudget.Paragraph"
+        style="@style/Base.Theme.SmartBudget.ParagraphM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="5dp"
@@ -40,7 +40,7 @@
 
     <TextView
         android:id="@+id/tv_itemDescription"
-        style="@style/Base.Theme.SmartBudget.Paragraph"
+        style="@style/Base.Theme.SmartBudget.ParagraphM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="descripcion"

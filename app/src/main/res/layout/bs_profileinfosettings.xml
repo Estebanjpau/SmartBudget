@@ -20,7 +20,7 @@
             android:background="@drawable/information" />
 
         <TextView
-            style="@style/Base.Theme.SmartBudget.Text"
+            style="@style/Base.Theme.SmartBudget.TextM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -49,7 +49,7 @@
             android:background="@drawable/termsofuse" />
 
         <TextView
-            style="@style/Base.Theme.SmartBudget.Text"
+            style="@style/Base.Theme.SmartBudget.TextM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -78,7 +78,7 @@
             android:background="@drawable/policy" />
 
         <TextView
-            style="@style/Base.Theme.SmartBudget.Text"
+            style="@style/Base.Theme.SmartBudget.TextM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

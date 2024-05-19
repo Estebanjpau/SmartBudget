@@ -1,4 +1,4 @@
-package com.example.smartbudget.ui.views.fragments
+package com.example.smartbudget.ui.views.fragments.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,13 +10,16 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.smartbudget.databinding.FragmentLoginBinding
 import com.example.smartbudget.ui.views.activities.MainActivity
-import com.example.smartbudget.viewmodel.LoginViewModel
+import com.example.smartbudget.viewmodel.auth.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private val viewModel: LoginViewModel by viewModels()
+
+    private val authViewModel: AuthViewModel by viewModels()
+
     private lateinit var binding: FragmentLoginBinding
 
     override fun onCreateView(
@@ -38,7 +41,6 @@ class LoginFragment : Fragment() {
         }
 
         viewModel.loadingState.observe(viewLifecycleOwner, Observer { isLoading ->
-            // Mostrar u ocultar indicador de carga según el valor de isLoading
             if (isLoading) {
                 // Mostrar indicador de carga
             } else {

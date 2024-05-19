@@ -1,6 +1,5 @@
 package com.example.smartbudget.ui.views.fragments.profile
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import com.example.smartbudget.R
 import com.example.smartbudget.databinding.FragmentProfileBinding
 import com.example.smartbudget.ui.views.contracts.FragmentContract
 import com.google.android.material.bottomsheet.BottomSheetDialog
-
 
 class Profile : Fragment(), FragmentContract {
 

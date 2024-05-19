@@ -6,12 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.smartbudget.R
-import com.example.smartbudget.databinding.ActivityMainBinding
-import com.example.smartbudget.databinding.DialogNewsubscriptionBinding
 import com.example.smartbudget.databinding.FragmentHomeBinding
 import com.example.smartbudget.ui.views.contracts.FragmentContract
-import com.example.smartbudget.ui.views.popups.DialogHomeNewTransaction
-import com.example.smartbudget.ui.views.popups.DialogNewSubscription
+import com.example.smartbudget.ui.utils.popups.DialogHomeNewTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -64,7 +61,7 @@ class Home : Fragment(), FragmentContract {
         val transaction = requireFragmentManager().beginTransaction()
         transaction.setCustomAnimations(R.anim.slide_up, R.anim.slide_down)
         transaction.replace(R.id.fl_optionsfragment, subscriptionsFragment)
-        transaction.addToBackStack(null)
+        transaction.addToBackStack("home")
         transaction.commit()
 
         requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationBar).visibility = View.GONE

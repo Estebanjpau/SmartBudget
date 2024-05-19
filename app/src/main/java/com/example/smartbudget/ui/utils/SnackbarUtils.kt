@@ -1,10 +1,9 @@
-package com.example.smartbudget.ui.views.utils
+package com.example.smartbudget.ui.utils
 
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
-import androidx.core.view.marginBottom
 import com.example.smartbudget.R
 import com.google.android.material.snackbar.Snackbar
 

@@ -1,4 +1,4 @@
-package com.example.smartbudget.ui.views.models
+package com.example.smartbudget.ui.adapters.subscription
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

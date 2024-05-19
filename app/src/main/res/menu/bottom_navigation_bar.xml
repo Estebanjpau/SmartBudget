@@ -5,10 +5,10 @@
         android:id="@+id/home"
         android:icon="@drawable/home_icon"/>
     <item android:title="@string/Budget"
-        android:id="@+id/Budget"
+        android:id="@+id/budget"
         android:icon="@drawable/money_usd"/>
     <item android:title="@string/History"
-        android:id="@+id/History"
+        android:id="@+id/history"
         android:icon="@drawable/credit_card_clock"/>
     <item android:title="@string/Settings"
         android:id="@+id/profile"

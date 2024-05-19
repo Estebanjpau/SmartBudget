@@ -1,4 +1,4 @@
-package com.example.smartbudget.ui.views.popups
+package com.example.smartbudget.ui.utils.popups
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -13,8 +13,8 @@ import com.example.smartbudget.databinding.DialogNewsubscriptionBinding
 import com.example.smartbudget.domain.FirebaseRepository
 import com.example.smartbudget.domain.FirebaseSubscriptionDataRepo
 import com.example.smartbudget.domain.FirebaseSubscriptionRepo
-import com.example.smartbudget.ui.views.adapters.SubscriptionAutoCompleteAdapter
-import com.example.smartbudget.ui.views.utils.SnackbarUtils
+import com.example.smartbudget.ui.adapters.SubscriptionAutoCompleteAdapter
+import com.example.smartbudget.ui.utils.SnackbarUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

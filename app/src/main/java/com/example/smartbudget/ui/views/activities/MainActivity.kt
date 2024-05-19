@@ -12,7 +12,7 @@ import com.example.smartbudget.di.SessionManager
 import com.example.smartbudget.ui.views.contracts.FragmentContract
 import com.example.smartbudget.ui.views.fragments.FragmentFactory
 import com.example.smartbudget.ui.views.fragments.Home
-import com.example.smartbudget.ui.views.fragments.LoginFragment
+import com.example.smartbudget.ui.views.fragments.login.LoginFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

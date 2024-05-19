@@ -8,17 +8,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.smartbudget.R
 import com.example.smartbudget.data.models.SubscriptionData
-import com.example.smartbudget.data.models.TransactionData
 import com.example.smartbudget.databinding.FragmentSubscriptionsBinding
 import com.example.smartbudget.domain.FirebaseRepository
 import com.example.smartbudget.domain.FirebaseSubscriptionDataRepo
-import com.example.smartbudget.ui.views.models.HistoryTransactionListAdapter
-import com.example.smartbudget.ui.views.models.SubscriptionListAdapter
-import com.example.smartbudget.ui.views.popups.DialogNewSubscription
+import com.example.smartbudget.ui.adapters.subscription.SubscriptionListAdapter
+import com.example.smartbudget.ui.utils.popups.DialogNewSubscription
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -61,6 +59,12 @@ class Subscriptions : Fragment() {
         }
         binding.button.setOnClickListener {
             dialogHomeNewSubscription.show(requireFragmentManager(), "Movimiento")
+        }
+
+        binding.btnClose.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+
+            requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationBar).visibility = View.VISIBLE
         }
     }
 

@@ -1,4 +1,4 @@
-package com.example.smartbudget.di
+package com.example.smartbudget.di.modules
 
 import com.example.smartbudget.data.implementation.FirebaseDataRepositoryImpl
 import com.example.smartbudget.domain.FirebaseDataRepository

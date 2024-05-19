@@ -76,7 +76,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        style="@style/Base.Theme.SmartBudget.Paragraph"
+                        style="@style/Base.Theme.SmartBudget.ParagraphM"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -144,7 +144,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    style="@style/Base.Theme.SmartBudget.Text"
+                    style="@style/Base.Theme.SmartBudget.TextM"
                     android:textColor="@color/Blue"
                     android:text="@string/HomeSeeMore"/>
             </LinearLayout>
@@ -193,7 +193,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_subscriptions">
 
                     <TextView
-                        style="@style/Base.Theme.SmartBudget.Text"
+                        style="@style/Base.Theme.SmartBudget.TextM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -216,7 +216,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_subscriptions">
 
                     <TextView
-                        style="@style/Base.Theme.SmartBudget.Text"
+                        style="@style/Base.Theme.SmartBudget.TextM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -239,7 +239,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_subscriptions">
 
                     <TextView
-                        style="@style/Base.Theme.SmartBudget.Text"
+                        style="@style/Base.Theme.SmartBudget.TextM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -262,7 +262,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_subscriptions">
 
                     <TextView
-                        style="@style/Base.Theme.SmartBudget.Text"
+                        style="@style/Base.Theme.SmartBudget.TextM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

@@ -1,8 +1,9 @@
-package com.example.smartbudget.viewmodel
+package com.example.smartbudget.ui.views.fragments.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.smartbudget.di.FirebaseUseCases
 import com.example.smartbudget.di.SessionManager
 import com.example.smartbudget.domain.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,7 +13,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase) : ViewModel() {
+class LoginViewModel @Inject constructor(
+    private val firebaseUseCases: FirebaseUseCases
+) : ViewModel() {
 
     private val _loadingState = MutableLiveData<Boolean>()
     val loadingState: LiveData<Boolean> = _loadingState
@@ -30,18 +33,18 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase)
 
         loginDisposable?.dispose()
 
-        loginDisposable = loginUseCase.login(username, password)
+        loginDisposable = firebaseUseCases.loginUseCase.login(username, password)
             .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread()) // Cambiado a hilo principal
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
                     SessionManager.isLoggedIn = true
-                    _navigateToHomeScreen.postValue(Unit) // Cambiado a postValue
-                    _loadingState.postValue(false) // Cambiado a postValue
+                    _navigateToHomeScreen.postValue(Unit)
+                    _loadingState.postValue(false)
                 },
                 { error ->
-                    _errorMessage.postValue(error.message ?: "An error occurred") // Cambiado a postValue
-                    _loadingState.postValue(false) // Cambiado a postValue
+                    _errorMessage.postValue(error.message ?: "An error occurred")
+                    _loadingState.postValue(false)
                 }
             )
     }

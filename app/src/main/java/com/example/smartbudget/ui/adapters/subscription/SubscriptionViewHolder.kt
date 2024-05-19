@@ -1,8 +1,6 @@
-package com.example.smartbudget.ui.views.models
+package com.example.smartbudget.ui.adapters.subscription
 
 import android.graphics.Color
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartbudget.data.models.SubscriptionData
 import com.example.smartbudget.databinding.ListitemsubscriptionBinding

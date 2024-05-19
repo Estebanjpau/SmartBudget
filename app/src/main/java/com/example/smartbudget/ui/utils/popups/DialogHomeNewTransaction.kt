@@ -1,4 +1,4 @@
-package com.example.smartbudget.ui.views.popups
+package com.example.smartbudget.ui.utils.popups
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -9,7 +9,7 @@ import androidx.fragment.app.DialogFragment
 import com.example.smartbudget.domain.FirebaseRepository
 import com.example.smartbudget.databinding.DialogHomenewtransactionBinding
 import com.example.smartbudget.ui.utils.TextUtils
-import com.example.smartbudget.ui.views.utils.SnackbarUtils
+import com.example.smartbudget.ui.utils.SnackbarUtils
 import javax.inject.Inject
 
 class DialogHomeNewTransaction @Inject constructor(private val firebaseRepository: FirebaseRepository) : DialogFragment() {

@@ -1,4 +1,4 @@
-package com.example.smartbudget.ui.views.models
+package com.example.smartbudget.ui.adapters.history
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartbudget.data.models.TransactionData

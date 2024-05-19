@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.smartbudget.domain.FirebaseDataRepository
-import com.example.smartbudget.domain.FirebaseRepository
 import com.example.smartbudget.data.models.TransactionData
 import com.example.smartbudget.databinding.FragmentHistoryBinding
+import com.example.smartbudget.domain.FirebaseDataRepository
+import com.example.smartbudget.domain.FirebaseRepository
+import com.example.smartbudget.ui.adapters.history.HistoryTransactionListAdapter
 import com.example.smartbudget.ui.views.contracts.FragmentContract
-import com.example.smartbudget.ui.views.models.HistoryTransactionListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -28,8 +28,9 @@ class History : Fragment(), FragmentContract {
     @Inject
     lateinit var firebaseRepository: FirebaseRepository
 
+    private var transactionList: MutableList<TransactionData> = mutableListOf()
+
     private lateinit var binding: FragmentHistoryBinding
-    private lateinit var transactionList: MutableList<TransactionData>
     private lateinit var transactionAdapter: HistoryTransactionListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,10 +51,9 @@ class History : Fragment(), FragmentContract {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.Main).launch {
             setupRecyclerView()
 
-            //FUNCION SIN PROBAR
             if (transactionList.isEmpty()){
                 binding.clNothingToShow.visibility = View.VISIBLE
                 binding.clHistory.visibility = View.GONE
@@ -71,12 +71,11 @@ class History : Fragment(), FragmentContract {
     private suspend fun setupRecyclerView(){
         val getCurrentSession = firebaseRepository.checkUserSession()
         if (getCurrentSession) {
+
             withContext(Dispatchers.IO) {
-                val emptyList: MutableList<TransactionData> = mutableListOf()
                 transactionList =
-                    firebaseDataRepository.downloadTransactionData()?.sortedByDescending { it.timestamp }
-                        ?.toMutableList()
-                        ?: emptyList
+                    firebaseDataRepository.downloadTransactionData().sortedByDescending { it.timestamp }
+                        .toMutableList()
             }
 
             transactionAdapter = HistoryTransactionListAdapter(transactionList)
