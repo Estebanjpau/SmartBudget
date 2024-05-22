@@ -1,15 +1,14 @@
-package com.example.smartbudget.ui.views.fragments
+package com.example.smartbudget.ui.views.fragments.history
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.smartbudget.data.models.TransactionData
 import com.example.smartbudget.databinding.FragmentHistoryBinding
-import com.example.smartbudget.domain.FirebaseDataRepository
-import com.example.smartbudget.domain.FirebaseRepository
 import com.example.smartbudget.ui.adapters.history.HistoryTransactionListAdapter
 import com.example.smartbudget.ui.views.contracts.FragmentContract
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,11 +21,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class History : Fragment(), FragmentContract {
 
-    @Inject
-    lateinit var firebaseDataRepository: FirebaseDataRepository
-
-    @Inject
-    lateinit var firebaseRepository: FirebaseRepository
+    private val viewModel: HistoryViewModel by viewModels()
 
     private var transactionList: MutableList<TransactionData> = mutableListOf()
 
@@ -69,16 +64,12 @@ class History : Fragment(), FragmentContract {
     }
 
     private suspend fun setupRecyclerView(){
-        val getCurrentSession = firebaseRepository.checkUserSession()
+        val getCurrentSession = viewModel.checkUserSession()
         if (getCurrentSession) {
 
-            withContext(Dispatchers.IO) {
-                transactionList =
-                    firebaseDataRepository.downloadTransactionData().sortedByDescending { it.timestamp }
-                        .toMutableList()
-            }
+            viewModel.downloadTransactions()
 
-            transactionAdapter = HistoryTransactionListAdapter(transactionList)
+            transactionAdapter = HistoryTransactionListAdapter(viewModel.transactionList)
 
             withContext(Dispatchers.Main) {
                 binding.rvTransactionHistory.apply {

@@ -1,7 +1,6 @@
 package com.example.smartbudget.data.implementation
 
 import android.util.Log
-import com.example.smartbudget.domain.FirebaseRepository
 import com.example.smartbudget.ui.utils.DateUtils
 import com.example.smartbudget.ui.utils.TimestampUtils
 import com.google.firebase.auth.FirebaseAuth
@@ -12,9 +11,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class FirebaseRepositoryImpl @Inject constructor() : FirebaseRepository {
+class FirebaseRepositoryImpl @Inject constructor() {
 
-    override fun loadTransactions(amount: Double, category: String, description: String) {
+    fun loadTransactions(amount: Double, category: String, description: String) {
 
         CoroutineScope(Dispatchers.IO).launch {
 
@@ -64,7 +63,7 @@ class FirebaseRepositoryImpl @Inject constructor() : FirebaseRepository {
         }
     }
 
-    override  fun checkUserSession(): Boolean {
+    fun checkUserSession(): Boolean {
         return FirebaseAuth.getInstance().currentUser != null
     }
 }

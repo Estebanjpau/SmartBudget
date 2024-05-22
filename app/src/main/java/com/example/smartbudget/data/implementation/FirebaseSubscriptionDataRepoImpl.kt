@@ -3,7 +3,6 @@ package com.example.smartbudget.data.implementation
 import android.util.Log
 import com.example.smartbudget.data.models.SubscriptionData
 import com.example.smartbudget.data.models.SubscriptionDataBase
-import com.example.smartbudget.domain.FirebaseSubscriptionDataRepo
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -12,8 +11,8 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-class FirebaseSubscriptionDataRepoImpl @Inject constructor() : FirebaseSubscriptionDataRepo{
-    override suspend fun downloadSubscriptionData(): MutableList<SubscriptionData> {
+class FirebaseSubscriptionDataRepoImpl @Inject constructor(){
+    suspend fun downloadSubscriptionData(): MutableList<SubscriptionData> {
         return suspendCoroutine { continuation ->
             val db = Firebase.firestore
             val userId = FirebaseAuth.getInstance().currentUser?.uid
@@ -49,7 +48,7 @@ class FirebaseSubscriptionDataRepoImpl @Inject constructor() : FirebaseSubscript
         }
     }
 
-    override suspend fun downloadSubscriptionDataBase(): MutableList<SubscriptionDataBase> {
+    suspend fun downloadSubscriptionDataBase(): MutableList<SubscriptionDataBase> {
         return suspendCoroutine { continuation ->
             val db = Firebase.firestore
 

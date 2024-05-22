@@ -1,9 +1,15 @@
 package com.example.smartbudget.viewmodel.auth
 
+import android.content.ContentValues.TAG
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.smartbudget.di.SessionManager
+import com.example.smartbudget.ui.utils.SnackbarUtils
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.coroutines.coroutineContext
 
 @Singleton
 class AuthResultFirebase @Inject constructor() {
@@ -14,7 +20,14 @@ class AuthResultFirebase @Inject constructor() {
     val logoutResult: LiveData<Result<Unit>> get() = _logoutResult
 
     fun handleLoginResult(result: Result<Unit>) {
-        _loginResult.value = result
+        _loginResult.postValue(result)
+
+        if (result.isSuccess) {
+            SessionManager.isLoggedIn = true
+        } else {
+            SessionManager.isLoggedIn = false
+            Log.e(TAG, "handleLoginResult: ${result.exceptionOrNull()?.message} : Login Failed")
+        }
     }
 
     fun handleLogoutResult(result: Result<Unit>) {

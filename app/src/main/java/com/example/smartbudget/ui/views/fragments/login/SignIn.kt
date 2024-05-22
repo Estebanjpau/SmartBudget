@@ -8,26 +8,26 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.example.smartbudget.databinding.FragmentLoginBinding
+import com.example.smartbudget.databinding.FragmentSigninBinding
 import com.example.smartbudget.ui.views.activities.MainActivity
 import com.example.smartbudget.viewmodel.auth.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
+class SignIn : Fragment() {
 
-    private val viewModel: LoginViewModel by viewModels()
+    private val viewModel: SignInViewModel by viewModels()
 
     private val authViewModel: AuthViewModel by viewModels()
 
-    private lateinit var binding: FragmentLoginBinding
+    private lateinit var binding: FragmentSigninBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentLoginBinding.inflate(inflater, container, false)
+        binding = FragmentSigninBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -37,29 +37,27 @@ class LoginFragment : Fragment() {
         binding.loginButton.setOnClickListener {
             val username = binding.etLoginUsername.text.toString()
             val password = binding.etLoginPassword.text.toString()
-            viewModel.loginUser(username, password)
+            authViewModel.login(username, password)
         }
 
-        viewModel.loadingState.observe(viewLifecycleOwner, Observer { isLoading ->
-            if (isLoading) {
-                // Mostrar indicador de carga
-            } else {
-                // Ocultar indicador de carga
-                if(viewModel.navigateToHomeScreen.value != null){
-                    val intent = Intent(requireContext(), MainActivity::class.java)
-                    requireActivity().finish()
+        binding.tvSignup.setOnClickListener {
+            viewModel.navigateToSignUpScreen(requireActivity())
+        }
 
-                    startActivity(intent)
-                }
+        authViewModel.authResultFirebase.loginResult.observe(viewLifecycleOwner, Observer { result ->
+            if (result.isSuccess) {
+                binding.tvErrorLogin.visibility = View.GONE
+                navigateToHomeScreen()
+            } else {
+                binding.tvErrorLogin.visibility = View.VISIBLE
             }
         })
+    }
 
-        viewModel.errorMessage.observe(viewLifecycleOwner, Observer { errorMessage ->
-            // Mostrar el mensaje de error en la vista
-        })
+    private fun navigateToHomeScreen() {
+        val intent = Intent(requireContext(), MainActivity::class.java)
+        requireActivity().finish()
 
-        viewModel.navigateToHomeScreen.observe(viewLifecycleOwner, Observer {
-            // Navegar a la pantalla principal
-        })
+        startActivity(intent)
     }
 }

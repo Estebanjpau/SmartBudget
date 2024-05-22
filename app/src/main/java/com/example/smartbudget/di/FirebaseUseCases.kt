@@ -1,7 +1,9 @@
 package com.example.smartbudget.di
 
-import com.example.smartbudget.domain.LoginUseCase
+import com.example.smartbudget.domain.SubscriptionUseCase
+import com.example.smartbudget.domain.TransactionUseCase
 
 data class FirebaseUseCases(
-    val loginUseCase: LoginUseCase
+    val subscriptionUseCase: SubscriptionUseCase,
+    val transactionUseCase: TransactionUseCase
 )

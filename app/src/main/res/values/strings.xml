@@ -8,24 +8,34 @@
     <string name="Back">Regresar</string>
     <string name="Accept">Accept</string>
 
+    <!-- TODO: Login/Signup -->
+    <string name="email_or_password_incorrect">Correo o contraseña incorrectos</string>
+    <string name="haveAccount">¿Ya tienes una cuenta?, </string>
     <string name="Slogan">¡Gestiona tus finanzas sin estrés!</string>
-    <string name="Login">Inicia Sesión</string>
+    <string name="Signinbtn">Inicia Sesión</string>
+    <string name="Signupbtn">Registrarse</string>
+    <string name="Nickname">Nombre</string>
     <string name="User">Usuario</string>
     <string name="Password">Contraseña</string>
+    <string name="ConfirmPassword">Confirmar contraseña</string>
     <string name="Remindme">Recuerdame</string>
     <string name="ForgotPassword">Olvidé mi contraseña</string>
     <string name="OrLoginWith">o puedes iniciar sesión con</string>
     <string name="noAccount">¿No tienes cuenta?,</string>
-    <string name="Signin"> ¡Regístrate aquí!</string>
+    <string name="Signin"> Inicia sesion</string>
+    <string name="Signup"> ¡Regístrate aquí!</string>
     <string name="authGoogle"> Autenticarse con Google</string>
     <string name="authFacebook"> Autenticarse con Facebook </string>
     <string name="authLindkedIn"> Autenticarse con Linkedin </string>
+    <string name="termsAndConditions"> Acepto los términos y condiciones </string>
 
+    <!-- TODO: Navigation -->
     <string name="Home">Inicio</string>
     <string name="History">Historial</string>
     <string name="Budget">Presupuestos</string>
     <string name="Settings">Configuración</string>
 
+    <!-- TODO: Home Screen -->
     <string name="Homehello">¡Hola!, que gusto verte de nuevo</string>
     <string name="HomeMovements">¡No olvides registrar aquí tus movimientos!</string>
     <string name="HomeNewTransaction">Agregar movimiento</string>
@@ -37,6 +47,7 @@
     <string name="HomeSuscription">Tus suscripciones</string>
     <string name="HomeSeeMore">Ver más…</string>
 
+    <!--- TODO: Transaction dialogs -->
     <string name="SubscriptionHead">Suscripciones</string>
     <string name="AddSubscription">Agregar suscripción</string>
     <string name="SubscriptionTitleError">Debes ingresar un nombre</string>
@@ -47,6 +58,7 @@
     <string name="SubscriptionTitle">Suscripcion</string>
     <string name="SubscriptionCategory">Categoria</string>
 
+    <!-- TODO: History Screen -->
     <string name="NoHistory">Ups, parece que aún no hay nada que mostrar</string>
     <string name="HistorySortBy">Ordenar por</string>
 
@@ -54,6 +66,7 @@
     <string name="NewBudget">Crear presupuesto</string>
     <string name="FABBudget">Crear presupuesto</string>
 
+    <!-- TODO: Settings Screen -->
     <string name="SettingsTags">Etiquetas</string>
     <string name="SettingsCurrency">Seleccionar moneda por defecto</string>
     <string name="SettingEnableDarkMode">Modo Oscuro</string>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/LightBackground"
-    tools:context="com.example.smartbudget.ui.views.fragments.login.LoginFragment">
+    tools:context="com.example.smartbudget.ui.views.fragments.login.SignIn">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,19 +16,19 @@
             android:id="@+id/iv_logo"
             android:layout_width="208dp"
             android:layout_height="72dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/logotipo_1"
             app:layout_constraintBottom_toTopOf="@+id/ll_inputLogin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:id="@+id/ll_inputLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="192dp"
             android:orientation="vertical"
+            android:gravity="center"
             app:layout_constraintBottom_toTopOf="@+id/ll_buttonsLogin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,9 +51,10 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_username"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginVertical="12dp"
                 android:background="@drawable/shape_semirounded"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="18dp"
@@ -65,7 +66,7 @@
 
                 <LinearLayout
                     android:id="@+id/ll_username"
-                    android:layout_width="350dp"
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:gravity="center"
                     android:orientation="horizontal"
@@ -75,8 +76,9 @@
 
                     <ImageView
                         android:id="@+id/iv_loginUsername"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="8dp"
                         android:layout_gravity="center"
                         android:background="@drawable/user_icon"
                         android:contentDescription="@string/User" />
@@ -95,9 +97,10 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_password"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginVertical="12dp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="18dp"
                 app:cardElevation="3dp"
@@ -108,7 +111,7 @@
 
                 <LinearLayout
                     android:id="@+id/ll_password"
-                    android:layout_width="350dp"
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal"
@@ -118,8 +121,9 @@
 
                     <ImageView
                         android:id="@+id/iv_loginPassword"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="8dp"
                         android:layout_gravity="center"
                         android:background="@drawable/password_icon"
                         android:contentDescription="@string/Password" />
@@ -137,36 +141,60 @@
 
             </androidx.cardview.widget.CardView>
 
-            <CheckBox
-                android:id="@+id/cb_remindme"
-                android:layout_width="32dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="20dp"
-                app:layout_constraintStart_toStartOf="@+id/cv_password"
-                app:layout_constraintTop_toBottomOf="@id/cv_password" />
-
             <TextView
-                android:id="@+id/tv_remindme"
+                android:id="@+id/tv_errorLogin"
+                style="@style/Base.Theme.SmartBudget.ParagraphS"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:drawablePadding="4dp"
                 android:gravity="center"
-                android:text="@string/Remindme"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/cb_remindme"
-                app:layout_constraintTop_toTopOf="@id/cb_remindme" />
+                android:text="@string/email_or_password_incorrect"
+                android:textColor="@color/Red"
+                android:visibility="gone"
+                app:drawableSize="12dp"
+                app:drawableStartCompat="@drawable/information"
+                app:drawableTint="@color/Red" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:gravity="center"
-                android:text="@string/ForgotPassword"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="@id/cv_password"
-                app:layout_constraintTop_toTopOf="@id/cb_remindme" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginVertical="12dp"
+                android:orientation="horizontal">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <CheckBox
+                    android:id="@+id/cb_remindme"
+                    android:layout_width="32dp"
+                    android:layout_height="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_remindme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Remindme"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cb_remindme"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ForgotPassword"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/cb_remindme" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_buttonsLogin"
@@ -179,12 +207,13 @@
 
             <Button
                 android:id="@+id/loginButton"
-                android:layout_width="330dp"
+                android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginBottom="30dp"
-                android:text="@string/Login"
+                android:text="@string/Signin"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -192,7 +221,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="6dp"
+                android:padding="6dp"
                 android:text="@string/OrLoginWith"
                 android:textSize="14sp" />
 
@@ -206,7 +236,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
+                    android:layout_margin="6dp"
                     android:backgroundTint="@color/white"
                     app:cardCornerRadius="24dp"
                     app:cardElevation="3dp"
@@ -255,7 +285,9 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
+                android:id="@+id/ll_register"
                 android:layout_width="match_parent"
+                android:padding="6dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:gravity="center_horizontal"
@@ -269,10 +301,10 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tv_signin"
+                    android:id="@+id/tv_signup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Signin"
+                    android:text="@string/Signup"
                     android:textColor="@color/Green"
                     android:textSize="14sp"
                     android:textStyle="bold" />

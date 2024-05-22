@@ -1,9 +1,6 @@
 package com.example.smartbudget.data.implementation
 
 import android.util.Log
-import com.example.smartbudget.domain.FirebaseSubscriptionRepo
-import com.example.smartbudget.ui.utils.DateUtils
-import com.example.smartbudget.ui.utils.TimestampUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -12,8 +9,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class FirebaseSubscriptionRepoImpl @Inject constructor() : FirebaseSubscriptionRepo {
-    override fun loadSubscription(amount: Double, category: String, title: String, day: Int, background: String, textColor: String) {
+class FirebaseSubscriptionRepoImpl @Inject constructor() {
+    fun loadSubscription(amount: Double, category: String, title: String, day: Int, background: String, colorText: String) {
 
             CoroutineScope(Dispatchers.IO).launch {
 
@@ -34,7 +31,7 @@ class FirebaseSubscriptionRepoImpl @Inject constructor() : FirebaseSubscriptionR
                                 "subscription" to title,
                                 "dayBilling" to day,
                                 "background" to background,
-                                "textColor" to textColor
+                                "textColor" to colorText
                             )
 
                             newTransaction.set(transactionData)

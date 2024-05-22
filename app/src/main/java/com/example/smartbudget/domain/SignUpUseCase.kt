@@ -4,11 +4,10 @@ import com.example.smartbudget.data.AuthRepositoryFb
 import io.reactivex.rxjava3.core.Completable
 import javax.inject.Inject
 
-class LoginUseCase @Inject constructor(
+class SignUpUseCase @Inject constructor(
     private val authrepository: AuthRepositoryFb
-) {
-    fun login(email: String, password: String): Completable {
-        return authrepository.login(email, password)
-            .andThen(Completable.fromAction { })
+){
+    fun signup(email: String, password: String): Completable {
+        return authrepository.register(email, password)
     }
 }

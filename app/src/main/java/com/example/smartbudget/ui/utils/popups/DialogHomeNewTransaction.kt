@@ -6,13 +6,13 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.fragment.app.DialogFragment
-import com.example.smartbudget.domain.FirebaseRepository
+import com.example.smartbudget.data.RepositoryFb
 import com.example.smartbudget.databinding.DialogHomenewtransactionBinding
 import com.example.smartbudget.ui.utils.TextUtils
 import com.example.smartbudget.ui.utils.SnackbarUtils
 import javax.inject.Inject
 
-class DialogHomeNewTransaction @Inject constructor(private val firebaseRepository: FirebaseRepository) : DialogFragment() {
+class DialogHomeNewTransaction @Inject constructor(private val repositoryFb: RepositoryFb) : DialogFragment() {
 
     private lateinit var binding: DialogHomenewtransactionBinding
     private val categories = arrayOf("Comida", "Educación", "Entretenimiento", "Hogar", "Medicina", "Mascota", "Ocio", "Otros", "Ropa", "Salud", "Transporte", "Viajes")
@@ -27,7 +27,7 @@ class DialogHomeNewTransaction @Inject constructor(private val firebaseRepositor
             .setView(binding.root)
 
         binding.btnContinue.setOnClickListener {
-            val getCurrentSession = firebaseRepository.checkUserSession()
+            val getCurrentSession = repositoryFb.checkSession()
 
             if (getCurrentSession){
 
@@ -62,6 +62,6 @@ class DialogHomeNewTransaction @Inject constructor(private val firebaseRepositor
     }
 
     private fun loadInputData(amountEntered: Double, categoryEntered: String, descriptionEntered: String){
-        firebaseRepository.loadTransactions(amountEntered, categoryEntered, descriptionEntered)
+        repositoryFb.loadTransactions(amountEntered, categoryEntered, descriptionEntered)
     }
 }

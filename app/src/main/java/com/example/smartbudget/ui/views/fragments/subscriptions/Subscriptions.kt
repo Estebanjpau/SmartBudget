@@ -1,16 +1,15 @@
-package com.example.smartbudget.ui.views.fragments
+package com.example.smartbudget.ui.views.fragments.subscriptions
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.smartbudget.R
 import com.example.smartbudget.data.models.SubscriptionData
 import com.example.smartbudget.databinding.FragmentSubscriptionsBinding
-import com.example.smartbudget.domain.FirebaseRepository
-import com.example.smartbudget.domain.FirebaseSubscriptionDataRepo
 import com.example.smartbudget.ui.adapters.subscription.SubscriptionListAdapter
 import com.example.smartbudget.ui.utils.popups.DialogNewSubscription
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -28,14 +27,9 @@ class Subscriptions : Fragment() {
     lateinit var dialogHomeNewSubscription: DialogNewSubscription
 
     lateinit var binding: FragmentSubscriptionsBinding
-    private lateinit var subscriptionList: MutableList<SubscriptionData>
     private lateinit var subscriptionAdapter: SubscriptionListAdapter
 
-    @Inject
-    lateinit var firebaseRepository: FirebaseRepository
-
-    @Inject
-    lateinit var firebaseSubscriptionDataRepo: FirebaseSubscriptionDataRepo
+    private val viewModel: SubscriptionViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,17 +63,12 @@ class Subscriptions : Fragment() {
     }
 
     private suspend fun setupRecyclerView(){
-        val getCurrentSession = firebaseRepository.checkUserSession()
+        val getCurrentSession = viewModel.checkUserSession()
         if (getCurrentSession) {
-            withContext(Dispatchers.IO) {
-                val emptyList: MutableList<SubscriptionData> = mutableListOf()
-                subscriptionList =
-                    firebaseSubscriptionDataRepo.downloadSubscriptionData().sortedByDescending { it.subscription }
-                        .toMutableList()
-                        ?: emptyList
-            }
 
-            subscriptionAdapter = SubscriptionListAdapter(subscriptionList)
+            viewModel.downloadSubscriptionData()
+
+            subscriptionAdapter = SubscriptionListAdapter(viewModel.subscriptionList)
 
             withContext(Dispatchers.Main) {
                 binding.rvSubscriptions.apply {

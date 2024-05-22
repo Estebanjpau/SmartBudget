@@ -1,7 +1,6 @@
 package com.example.smartbudget.data.implementation
 
 import android.util.Log
-import com.example.smartbudget.domain.FirebaseDataRepository
 import com.example.smartbudget.data.models.TransactionData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -11,9 +10,9 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-class FirebaseDataRepositoryImpl @Inject constructor() : FirebaseDataRepository {
+class FirebaseDataRepositoryImpl @Inject constructor() {
 
-    override suspend fun downloadTransactionData(): MutableList<TransactionData> {
+    suspend fun downloadTransactionData(): MutableList<TransactionData> {
         return suspendCoroutine { continuation ->
             val db = Firebase.firestore
             val userId = FirebaseAuth.getInstance().currentUser?.uid

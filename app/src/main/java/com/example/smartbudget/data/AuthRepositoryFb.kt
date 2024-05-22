@@ -1,45 +1,23 @@
 package com.example.smartbudget.data
 
-import com.example.smartbudget.viewmodel.auth.AuthRepository
+import com.example.smartbudget.data.auth.AuthFirebase
 import com.google.firebase.auth.FirebaseAuth
 import io.reactivex.rxjava3.core.Completable
+import javax.inject.Inject
 
-class AuthRepositoryFb: AuthRepository {
-
-    private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-
-    override fun registerFb(email: String, password: String): Completable {
-        return Completable.create { notify ->
-            firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        notify.onComplete()
-                    } else {
-                        val exception = task.exception
-                        notify.onError(exception ?: Exception("Error al registrar"))
-                    }
-                }
-        }
+class AuthRepositoryFb @Inject constructor(
+    private val firebase: AuthFirebase
+) {
+    fun register(email: String, password: String): Completable {
+        return firebase.registerFb(email, password)
     }
 
-    override fun loginFb(email: String, password: String): Completable {
-        return Completable.create { notify ->
-            firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        notify.onComplete()
-                    } else {
-                        val exception = task.exception
-                        notify.onError(exception ?: Exception("Error al iniciar sesion"))
-                    }
-                }
-        }
+    fun login(email: String, password: String): Completable {
+        return firebase.loginFb(email, password)
     }
 
-    override fun logoutFb(): Completable {
-        return Completable.create { notify ->
-            firebaseAuth.signOut()
-            notify.onComplete()
+    fun logout(): Completable {
+        return firebase.logoutFb()
         }
-    }
+
 }

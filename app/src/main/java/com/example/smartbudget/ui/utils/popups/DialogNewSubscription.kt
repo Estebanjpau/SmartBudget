@@ -8,11 +8,9 @@ import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import com.example.smartbudget.R
+import com.example.smartbudget.data.RepositoryFb
 import com.example.smartbudget.data.models.SubscriptionDataBase
 import com.example.smartbudget.databinding.DialogNewsubscriptionBinding
-import com.example.smartbudget.domain.FirebaseRepository
-import com.example.smartbudget.domain.FirebaseSubscriptionDataRepo
-import com.example.smartbudget.domain.FirebaseSubscriptionRepo
 import com.example.smartbudget.ui.adapters.SubscriptionAutoCompleteAdapter
 import com.example.smartbudget.ui.utils.SnackbarUtils
 import kotlinx.coroutines.CoroutineScope
@@ -20,7 +18,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class DialogNewSubscription @Inject constructor(private val firebaseSubscriptionRepo: FirebaseSubscriptionRepo, private val firebaseRepository: FirebaseRepository, private val firebaseSubscriptionDataRepo: FirebaseSubscriptionDataRepo) : DialogFragment() {
+class DialogNewSubscription @Inject constructor(private val repository: RepositoryFb) : DialogFragment() {
 
     private lateinit var binding: DialogNewsubscriptionBinding
     private val categories = arrayOf("Comida", "Educación", "Entretenimiento", "Hogar", "Medicina", "Mascota", "Ocio", "Otros", "Ropa", "Salud", "Transporte", "Viajes")
@@ -36,7 +34,7 @@ class DialogNewSubscription @Inject constructor(private val firebaseSubscription
             .setView(binding.root)
 
         CoroutineScope(Dispatchers.IO).launch{
-            subscriptionList = firebaseSubscriptionDataRepo.downloadSubscriptionDataBase()
+            subscriptionList = repository.downloadSubscriptionDatabase()
 
 
             CoroutineScope(Dispatchers.Main).launch {
@@ -116,7 +114,7 @@ class DialogNewSubscription @Inject constructor(private val firebaseSubscription
         binding.spinnerSubscriptionCategory.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item,categories)
 
         binding.btnContinue.setOnClickListener {
-            val getCurrentSession = firebaseRepository.checkUserSession()
+            val getCurrentSession = repository.checkSession()
 
             if (getCurrentSession){
 
@@ -169,6 +167,6 @@ class DialogNewSubscription @Inject constructor(private val firebaseSubscription
     }
 
     private fun loadInputData(amountEntered: Double, categoryEntered: String, titleEntered: String, dayBillingEntered: Int, backgroundEntered: String, colorText: String){
-        firebaseSubscriptionRepo.loadSubscription(amountEntered, categoryEntered, titleEntered, dayBillingEntered, backgroundEntered, colorText )
+        repository.loadSubscription(amountEntered, categoryEntered, titleEntered, dayBillingEntered, backgroundEntered, colorText )
     }
 }

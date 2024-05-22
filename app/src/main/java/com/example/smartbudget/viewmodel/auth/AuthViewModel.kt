@@ -1,43 +1,71 @@
 package com.example.smartbudget.viewmodel.auth
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.smartbudget.di.FirebaseAuthUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
-    private val authRepository: AuthRepository,
-    private val authResultFirebase: AuthResultFirebase
+    private val firebaseAuthUseCases: FirebaseAuthUseCases,
+    val authResultFirebase: AuthResultFirebase
 ) : ViewModel() {
+
+    private val _navigateToHomeScreen = MutableLiveData<Unit>()
+    val navigateToHomeScreen: LiveData<Unit> = _navigateToHomeScreen
+
+    private val _loadingState = MutableLiveData<Boolean>()
+    val loadingState: LiveData<Boolean> = _loadingState
 
     private val disposables = CompositeDisposable()
 
     fun register(email: String, password: String) {
-        authRepository.registerFb(email, password)
+        _loadingState.postValue(true)
+
+        firebaseAuthUseCases.signupUseCase.signup(email, password)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
             .subscribe(
-                { authResultFirebase.handleLoginResult(Result.success(Unit))  },
-                { error -> authResultFirebase.handleLoginResult(Result.failure(error)) }
+                {
+                    authResultFirebase.handleLoginResult(Result.success(Unit))
+                    _navigateToHomeScreen.postValue(Unit)
+                    _loadingState.postValue(false)
+                },
+                { error ->
+                    authResultFirebase.handleLoginResult(Result.failure(error))
+                    _loadingState.postValue(false)
+                }
             )
             .let { disposables.add(it) }
     }
 
     fun login(email: String, password: String) {
-        authRepository.loginFb(email, password)
+        _loadingState.postValue(true)
+
+            firebaseAuthUseCases.loginUseCase.login(email, password)
             .subscribeOn(Schedulers.io())
-            .observeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { authResultFirebase.handleLoginResult(Result.success(Unit)) },
-                { error -> authResultFirebase.handleLoginResult(Result.failure(error)) }
+                {
+                    authResultFirebase.handleLoginResult(Result.success(Unit))
+                    _navigateToHomeScreen.postValue(Unit)
+                    _loadingState.postValue(false)
+                },
+                { error ->
+                    authResultFirebase.handleLoginResult(Result.failure(error))
+                    _loadingState.postValue(false)
+                }
             )
             .let { disposables.add(it) }
     }
 
     fun logout() {
-        authRepository.logoutFb()
+        firebaseAuthUseCases.logOutUseCase.logout()
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
             .subscribe(

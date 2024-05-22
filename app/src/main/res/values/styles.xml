@@ -49,21 +49,28 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="Base.Theme.SmartBudget.ParagraphM" parent="Base.Theme.SmartBudget.Text">
-        <item name="android:textSize">16sp</item>
-    </style>
 
 
-
-    <style name="Base.Theme.SmartBudget.ParagraphS">
-        <item name="android:textSize">14sp</item>
+    <style name="Base.Theme.SmartBudget.Paragraph">
         <item name="fontFamily">@font/manrope_regular</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="Base.Theme.SmartBudget.ParagraphM" parent="Base.Theme.SmartBudget.Paragraph">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Base.Theme.SmartBudget.ParagraphS" parent="Base.Theme.SmartBudget.Paragraph">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+
+
     <style name="FloatingActionButtonStyle" parent="Widget.MaterialComponents.FloatingActionButton">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.Circular</item>
     </style>
+
+
 
     <style name="ShapeAppearanceOverlay.App.Circular" parent="">
         <item name="cornerFamily">rounded</item>

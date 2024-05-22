@@ -10,9 +10,12 @@ import com.example.smartbudget.R
 import com.example.smartbudget.databinding.ActivityMainBinding
 import com.example.smartbudget.di.SessionManager
 import com.example.smartbudget.ui.views.contracts.FragmentContract
+import com.example.smartbudget.ui.views.fragments.Budget
 import com.example.smartbudget.ui.views.fragments.FragmentFactory
+import com.example.smartbudget.ui.views.fragments.history.History
 import com.example.smartbudget.ui.views.fragments.Home
-import com.example.smartbudget.ui.views.fragments.login.LoginFragment
+import com.example.smartbudget.ui.views.fragments.login.SignIn
+import com.example.smartbudget.ui.views.fragments.profile.Profile
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,6 +23,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var binding: ActivityMainBinding
+    private var currentFragment = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -29,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         if (!SessionManager.isLoggedIn) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fl_loginFragment, LoginFragment())
+                .replace(R.id.fl_loginFragment, SignIn())
                 .commit()
             binding.bottomNavigationBar.visibility = View.GONE
         } else {
@@ -45,29 +50,37 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun replaceFragment(fragment: FragmentContract) {
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.setCustomAnimations(
-            android.R.anim.slide_in_left,
-            android.R.anim.slide_out_right
-        )
-        fragmentTransaction.replace(R.id.fl_navigationfragment, fragment as Fragment)
-        fragmentTransaction.commit()
-    }
+        var fragmentValue: Int
 
-    private fun toggleFragment(fragment: Fragment, show: Boolean) {
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-
-        if (show) {
-            fragmentTransaction.setCustomAnimations(
-                android.R.anim.slide_in_left,
-                android.R.anim.slide_out_right
-            )
-            fragmentTransaction.show(fragment)
-        } else {
-            fragmentTransaction.hide(fragment)
+        when (fragment) {
+            is Home -> { fragmentValue = 1 }
+            is Budget -> { fragmentValue = 2 }
+            is History -> { fragmentValue = 3 }
+            is Profile -> { fragmentValue = 4 }
+            else -> { fragmentValue = 1 }
         }
-        fragmentTransaction.commit()
+
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+
+        if (currentFragment == fragmentValue) {
+            return
+        } else if (currentFragment > fragmentValue){
+            fragmentTransaction.setCustomAnimations(
+                R.anim.slide_in_left,
+                R.anim.slide_out_right
+            )
+            fragmentTransaction.replace(R.id.fl_navigationfragment, fragment as Fragment)
+            fragmentTransaction.commitNow()
+        } else {
+            fragmentTransaction.setCustomAnimations(
+                R.anim.slide_in_right,
+                R.anim.slide_out_left
+            )
+            fragmentTransaction.replace(R.id.fl_navigationfragment, fragment as Fragment)
+            fragmentTransaction.commitNow()
+        }
+
+        currentFragment = fragmentValue
     }
 }
