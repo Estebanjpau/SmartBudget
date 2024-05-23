@@ -1,23 +1,18 @@
-package com.example.smartbudget.ui.views.fragments.subscriptions
+package com.example.smartbudget.ui.views.fragments.home.subscriptions
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.smartbudget.R
-import com.example.smartbudget.data.models.SubscriptionData
 import com.example.smartbudget.databinding.FragmentSubscriptionsBinding
-import com.example.smartbudget.ui.adapters.subscription.SubscriptionListAdapter
 import com.example.smartbudget.ui.utils.popups.DialogNewSubscription
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -48,9 +43,8 @@ class Subscriptions : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        CoroutineScope(Dispatchers.IO).launch {
-            setupRecyclerView()
-        }
+        setupRecyclerView()
+
         binding.button.setOnClickListener {
             dialogHomeNewSubscription.show(requireFragmentManager(), "Movimiento")
         }
@@ -60,22 +54,28 @@ class Subscriptions : Fragment() {
 
             requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationBar).visibility = View.VISIBLE
         }
+
+        viewModel.subscriptionList.observe(viewLifecycleOwner, Observer { list ->
+            list?.let {
+                if (it.isNotEmpty()) {
+                    subscriptionAdapter.updateList(it)
+                }
+            }
+
+        })
     }
 
-    private suspend fun setupRecyclerView(){
+    private fun setupRecyclerView() {
         val getCurrentSession = viewModel.checkUserSession()
         if (getCurrentSession) {
 
-            viewModel.downloadSubscriptionData()
+            viewModel.subscriptionData()
 
-            subscriptionAdapter = SubscriptionListAdapter(viewModel.subscriptionList)
+            subscriptionAdapter = SubscriptionListAdapter(mutableListOf())
 
-            withContext(Dispatchers.Main) {
-                binding.rvSubscriptions.apply {
-                    layoutManager = LinearLayoutManager(context)
-                    adapter = subscriptionAdapter
-                }
-                subscriptionAdapter.notifyDataSetChanged()
+            binding.rvSubscriptions.apply {
+                layoutManager = LinearLayoutManager(context)
+                adapter = subscriptionAdapter
             }
         }
     }

@@ -1,13 +1,24 @@
-package com.example.smartbudget.ui.adapters.history
+package com.example.smartbudget.ui.views.fragments.history
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.smartbudget.data.models.SubscriptionData
 import com.example.smartbudget.data.models.TransactionData
 import com.example.smartbudget.databinding.ListitemtransactionBinding
+import com.example.smartbudget.ui.views.utils.DiffUtilsTransaction
 
-class HistoryTransactionListAdapter(private val transactionList: List<TransactionData>) :
+class HistoryTransactionListAdapter(private var transactionList: List<TransactionData>) :
     RecyclerView.Adapter<HistoryTransactionListViewHolder>(){
+
+    fun updateList(newList: List<TransactionData>){
+        val galleryDiff = DiffUtilsTransaction(transactionList, newList)
+        val result = DiffUtil.calculateDiff(galleryDiff)
+        transactionList = newList
+        result.dispatchUpdatesTo(this)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryTransactionListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ListitemtransactionBinding.inflate(inflater, parent, false)

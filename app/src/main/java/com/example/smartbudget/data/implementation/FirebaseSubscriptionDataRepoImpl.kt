@@ -12,13 +12,14 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 class FirebaseSubscriptionDataRepoImpl @Inject constructor(){
-    suspend fun downloadSubscriptionData(): MutableList<SubscriptionData> {
+    suspend fun downloadSubscriptionUserData(): MutableList<SubscriptionData> {
         return suspendCoroutine { continuation ->
             val db = Firebase.firestore
             val userId = FirebaseAuth.getInstance().currentUser?.uid
             val userEmail = FirebaseAuth.getInstance().currentUser?.email
 
-            val collectionRef = db.collection("users").document(userEmail ?: userId.toString())
+            val collectionRef = db.collection("users")
+                .document(userEmail ?: userId.toString())
                 .collection("subscriptions")
 
             val subscritionList = mutableListOf<SubscriptionData>()

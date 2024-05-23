@@ -15,7 +15,7 @@ class RepositoryFb @Inject constructor(
     private val firebaseSubscriptionRepo: FirebaseSubscriptionRepoImpl,
     private val firebaseSubscriptionDataRepo: FirebaseSubscriptionDataRepoImpl
 ) {
-    suspend fun downloadTransactions(): MutableList<TransactionData> {
+    suspend fun getTransactions(): MutableList<TransactionData> {
         return firebaseDataRepository.downloadTransactionData()
     }
 
@@ -23,19 +23,15 @@ class RepositoryFb @Inject constructor(
         firebaseRepository.loadTransactions(amount, category, description)
     }
 
-    fun checkSession(): Boolean {
-        return firebaseRepository.checkUserSession()
-    }
-
     fun loadSubscription(amount: Double, category: String, title: String, day: Int, background: String, textColor: String) {
         firebaseSubscriptionRepo.loadSubscription(amount, category, title, day, background, textColor)
     }
 
-    suspend fun downloadSubscriptionData(): MutableList<SubscriptionData> {
-        return firebaseSubscriptionDataRepo.downloadSubscriptionData()
+    suspend fun getSubscriptionUserData(): MutableList<SubscriptionData> {
+        return firebaseSubscriptionDataRepo.downloadSubscriptionUserData()
     }
 
-    suspend fun downloadSubscriptionDatabase(): MutableList<SubscriptionDataBase> {
+    suspend fun getSubscriptionDatabase(): MutableList<SubscriptionDataBase> {
         return firebaseSubscriptionDataRepo.downloadSubscriptionDataBase()
     }
 }

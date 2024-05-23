@@ -1,7 +1,6 @@
 package com.example.smartbudget.domain
 
 import com.example.smartbudget.data.RepositoryFb
-import com.example.smartbudget.data.implementation.FirebaseSubscriptionRepoImpl
 import com.example.smartbudget.data.models.SubscriptionData
 import com.example.smartbudget.data.models.SubscriptionDataBase
 import javax.inject.Inject
@@ -14,10 +13,10 @@ class SubscriptionUseCase @Inject constructor(
     }
 
     suspend fun downloadSubscription(): MutableList<SubscriptionData> {
-        return repositoryFb.downloadSubscriptionData()
+        return repositoryFb.getSubscriptionUserData()
     }
 
     suspend fun downloadSubcriptionDatabase(): MutableList<SubscriptionDataBase> {
-        return repositoryFb.downloadSubscriptionDatabase()
+        return repositoryFb.getSubscriptionDatabase()
     }
 }

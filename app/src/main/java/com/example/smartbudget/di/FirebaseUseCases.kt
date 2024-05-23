@@ -5,5 +5,5 @@ import com.example.smartbudget.domain.TransactionUseCase
 
 data class FirebaseUseCases(
     val subscriptionUseCase: SubscriptionUseCase,
-    val transactionUseCase: TransactionUseCase
+    val transactionUseCase: TransactionUseCase,
 )

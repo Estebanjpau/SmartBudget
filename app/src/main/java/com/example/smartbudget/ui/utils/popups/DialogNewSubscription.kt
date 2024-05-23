@@ -11,6 +11,7 @@ import com.example.smartbudget.R
 import com.example.smartbudget.data.RepositoryFb
 import com.example.smartbudget.data.models.SubscriptionDataBase
 import com.example.smartbudget.databinding.DialogNewsubscriptionBinding
+import com.example.smartbudget.di.FirebaseAuthUseCases
 import com.example.smartbudget.ui.adapters.SubscriptionAutoCompleteAdapter
 import com.example.smartbudget.ui.utils.SnackbarUtils
 import kotlinx.coroutines.CoroutineScope
@@ -18,7 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class DialogNewSubscription @Inject constructor(private val repository: RepositoryFb) : DialogFragment() {
+class DialogNewSubscription @Inject constructor(private val repository: RepositoryFb, private val authUseCases: FirebaseAuthUseCases) : DialogFragment() {
 
     private lateinit var binding: DialogNewsubscriptionBinding
     private val categories = arrayOf("Comida", "Educación", "Entretenimiento", "Hogar", "Medicina", "Mascota", "Ocio", "Otros", "Ropa", "Salud", "Transporte", "Viajes")
@@ -34,7 +35,7 @@ class DialogNewSubscription @Inject constructor(private val repository: Reposito
             .setView(binding.root)
 
         CoroutineScope(Dispatchers.IO).launch{
-            subscriptionList = repository.downloadSubscriptionDatabase()
+            subscriptionList = repository.getSubscriptionDatabase()
 
 
             CoroutineScope(Dispatchers.Main).launch {
@@ -114,7 +115,7 @@ class DialogNewSubscription @Inject constructor(private val repository: Reposito
         binding.spinnerSubscriptionCategory.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item,categories)
 
         binding.btnContinue.setOnClickListener {
-            val getCurrentSession = repository.checkSession()
+            val getCurrentSession = authUseCases.validateSessionUseCase.checkUserSession()
 
             if (getCurrentSession){
 

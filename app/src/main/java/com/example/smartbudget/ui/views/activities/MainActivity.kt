@@ -13,7 +13,7 @@ import com.example.smartbudget.ui.views.contracts.FragmentContract
 import com.example.smartbudget.ui.views.fragments.Budget
 import com.example.smartbudget.ui.views.fragments.FragmentFactory
 import com.example.smartbudget.ui.views.fragments.history.History
-import com.example.smartbudget.ui.views.fragments.Home
+import com.example.smartbudget.ui.views.fragments.home.Home
 import com.example.smartbudget.ui.views.fragments.login.SignIn
 import com.example.smartbudget.ui.views.fragments.profile.Profile
 import dagger.hilt.android.AndroidEntryPoint

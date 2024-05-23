@@ -5,6 +5,7 @@ import com.example.smartbudget.di.FirebaseAuthUseCases
 import com.example.smartbudget.domain.LogOutUseCase
 import com.example.smartbudget.domain.LoginUseCase
 import com.example.smartbudget.domain.SignUpUseCase
+import com.example.smartbudget.domain.ValidateSessionUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,6 +21,7 @@ object FirebaseAuthRepository {
     fun provideFirebaseUseCases(authRepository: AuthRepositoryFb) = FirebaseAuthUseCases(
         LoginUseCase(authRepository),
         SignUpUseCase(authRepository),
-        LogOutUseCase(authRepository)
+        LogOutUseCase(authRepository),
+        ValidateSessionUseCase(authRepository)
     )
 }
