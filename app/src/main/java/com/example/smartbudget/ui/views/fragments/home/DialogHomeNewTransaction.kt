@@ -1,4 +1,4 @@
-package com.example.smartbudget.ui.utils.popups
+package com.example.smartbudget.ui.views.fragments.home
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.fragment.app.DialogFragment
-import com.example.smartbudget.data.RepositoryFb
+import com.example.smartbudget.R
 import com.example.smartbudget.databinding.DialogHomenewtransactionBinding
 import com.example.smartbudget.di.FirebaseAuthUseCases
 import com.example.smartbudget.di.FirebaseUseCases
@@ -60,7 +60,9 @@ class DialogHomeNewTransaction @Inject constructor(private val authUseCases: Fir
 
         binding.etDescription.filters = TextUtils.getDescriptionInputFilters(20)
 
-        return builder.create()
+        val dialog = builder.create()
+        dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_dialog)
+        return dialog
     }
 
     private fun loadInputData(amountEntered: Double, categoryEntered: String, descriptionEntered: String){

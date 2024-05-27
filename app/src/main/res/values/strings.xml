@@ -16,6 +16,7 @@
     <string name="Signupbtn">Registrarse</string>
     <string name="Nickname">Nombre</string>
     <string name="User">Usuario</string>
+    <string name="email">Correo electrónico</string>
     <string name="Password">Contraseña</string>
     <string name="ConfirmPassword">Confirmar contraseña</string>
     <string name="Remindme">Recuerdame</string>
@@ -28,6 +29,10 @@
     <string name="authFacebook"> Autenticarse con Facebook </string>
     <string name="authLindkedIn"> Autenticarse con Linkedin </string>
     <string name="termsAndConditions"> Acepto los términos y condiciones </string>
+    <string name="nickname_validate">Tu nickname debe contener entre 6 y 24 carácteres</string>
+    <string name="email_validate">Debes ingresar un correo electrónico válido</string>
+    <string name="password_validate">La contraseñas debe contener entre 6 y 16 carácteres</string>
+    <string name="confirm_password_validate">Las contraseñas deben coincidir</string>
 
     <!-- TODO: Navigation -->
     <string name="Home">Inicio</string>

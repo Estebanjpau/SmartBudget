@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.smartbudget.R
@@ -25,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var currentFragment = 0
 
+    private val viewModel: MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -32,14 +35,16 @@ class MainActivity : AppCompatActivity() {
 
         sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
-        if (!SessionManager.isLoggedIn) {
+         if (!viewModel.checkIfUserIsLogged()) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fl_loginFragment, SignIn())
                 .commit()
             binding.bottomNavigationBar.visibility = View.GONE
+            SessionManager.isLoggedIn = true
         } else {
             binding.bottomNavigationBar.visibility = View.VISIBLE
             replaceFragment(Home())
+            SessionManager.isLoggedIn = false
         }
 
         binding.bottomNavigationBar.setOnItemSelectedListener { menuItem ->

@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.smartbudget.R
 import com.example.smartbudget.databinding.FragmentSubscriptionsBinding
-import com.example.smartbudget.ui.utils.popups.DialogNewSubscription
+import com.example.smartbudget.ui.utils.popups.newsubscriptions.DialogNewSubscription
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -66,7 +66,7 @@ class Subscriptions : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        val getCurrentSession = viewModel.checkUserSession()
+        val getCurrentSession = viewModel.checkIfUserIsLogged()
         if (getCurrentSession) {
 
             viewModel.subscriptionData()

@@ -64,6 +64,10 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="Base.Theme.SmartBudget.ParagraphXS" parent="Base.Theme.SmartBudget.Paragraph">
+        <item name="android:textSize">13sp</item>
+    </style>
+
 
 
     <style name="FloatingActionButtonStyle" parent="Widget.MaterialComponents.FloatingActionButton">

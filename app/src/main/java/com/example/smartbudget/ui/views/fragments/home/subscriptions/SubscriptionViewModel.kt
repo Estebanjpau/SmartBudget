@@ -23,7 +23,7 @@ class SubscriptionViewModel @Inject constructor(
     val subscriptionList: LiveData<MutableList<SubscriptionData>> get() = _subscriptionList
     private val _subscriptionList = MutableLiveData<MutableList<SubscriptionData>>()
 
-    fun checkUserSession(): Boolean {
+    fun checkIfUserIsLogged(): Boolean {
         return firebaseAuthUseCases.validateSessionUseCase.checkUserSession()
     }
 

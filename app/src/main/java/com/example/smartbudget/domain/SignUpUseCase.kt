@@ -7,7 +7,7 @@ import javax.inject.Inject
 class SignUpUseCase @Inject constructor(
     private val authrepository: AuthRepositoryFb
 ){
-    fun signup(email: String, password: String): Completable {
-        return authrepository.register(email, password)
+    fun signup(email: String, password: String, username: String): Completable {
+        return authrepository.register(email, password, username)
     }
 }

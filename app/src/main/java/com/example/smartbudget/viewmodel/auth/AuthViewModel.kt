@@ -16,28 +16,24 @@ class AuthViewModel @Inject constructor(
     val authResultFirebase: AuthResultFirebase
 ) : ViewModel() {
 
-    private val _navigateToHomeScreen = MutableLiveData<Unit>()
-    val navigateToHomeScreen: LiveData<Unit> = _navigateToHomeScreen
-
     private val _loadingState = MutableLiveData<Boolean>()
     val loadingState: LiveData<Boolean> = _loadingState
 
     private val disposables = CompositeDisposable()
 
-    fun register(email: String, password: String) {
+    fun register(email: String, password: String, username: String) {
         _loadingState.postValue(true)
 
-        firebaseAuthUseCases.signupUseCase.signup(email, password)
+        firebaseAuthUseCases.signupUseCase.signup(email, password, username)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
             .subscribe(
                 {
-                    authResultFirebase.handleLoginResult(Result.success(Unit))
-                    _navigateToHomeScreen.postValue(Unit)
+                    authResultFirebase.handleRegisterResult(Result.success(Unit))
                     _loadingState.postValue(false)
                 },
                 { error ->
-                    authResultFirebase.handleLoginResult(Result.failure(error))
+                    authResultFirebase.handleRegisterResult(Result.failure(error))
                     _loadingState.postValue(false)
                 }
             )
@@ -53,7 +49,6 @@ class AuthViewModel @Inject constructor(
             .subscribe(
                 {
                     authResultFirebase.handleLoginResult(Result.success(Unit))
-                    _navigateToHomeScreen.postValue(Unit)
                     _loadingState.postValue(false)
                 },
                 { error ->

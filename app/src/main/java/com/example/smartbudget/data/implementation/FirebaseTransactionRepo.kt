@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class FirebaseRepositoryImpl @Inject constructor() {
+class FirebaseTransactionRepo @Inject constructor() {
 
     fun loadTransactions(amount: Double, category: String, description: String) {
 
@@ -39,24 +39,24 @@ class FirebaseRepositoryImpl @Inject constructor() {
 
                         newTransaction.set(transactionData)
                             .addOnCompleteListener {
-                                Log.d("FirebaseRepositoryImpl", "Datos cargados en Firebase")
+                                Log.d("FirebaseTransactionRepo", "Datos cargados en Firebase")
                             }
                             .addOnFailureListener {
                                 Log.e(
-                                    "FirebaseRepositoryImpl",
+                                    "FirebaseTransactionRepo",
                                     "Error al cargar datos del movimiento en Firebase"
                                 )
                             }
                     } else {
                         Log.e(
-                            "FirebaseRepositoryImpl",
+                            "FirebaseTransactionRepo",
                             "Ocurrió un error al consultar el documento"
                         )
                     }
                 }
             } catch (e: Exception) {
                 Log.e(
-                    "FirebaseRepositoryImpl",
+                    "FirebaseTransactionRepo",
                     "Excepción al realizar la operación de red: ${e.message}"
                 )
             }

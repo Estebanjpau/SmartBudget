@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class FirebaseSubscriptionRepoImpl @Inject constructor() {
+class FirebaseSubscriptionRepo @Inject constructor() {
     fun loadSubscription(amount: Double, category: String, title: String, day: Int, background: String, colorText: String) {
 
             CoroutineScope(Dispatchers.IO).launch {
@@ -36,24 +36,24 @@ class FirebaseSubscriptionRepoImpl @Inject constructor() {
 
                             newTransaction.set(transactionData)
                                 .addOnCompleteListener {
-                                    Log.d("FirebaseSubscriptionRepoImpl", "Datos cargados en Firebase")
+                                    Log.d("FirebaseSubscriptionRepo", "Datos cargados en Firebase")
                                 }
                                 .addOnFailureListener {
                                     Log.e(
-                                        "FirebaseSubscriptionRepoImpl",
+                                        "FirebaseSubscriptionRepo",
                                         "Error al cargar datos de la suscripcion en Firebase"
                                     )
                                 }
                         } else {
                             Log.e(
-                                "FirebaseSubscriptionRepoImpl",
+                                "FirebaseSubscriptionRepo",
                                 "Ocurrió un error al consultar el documento"
                             )
                         }
                     }
                 } catch (e: Exception) {
                     Log.e(
-                        "FirebaseSubscriptionRepoImpl",
+                        "FirebaseSubscriptionRepo",
                         "Excepción al realizar la operación de red: ${e.message}"
                     )
                 }

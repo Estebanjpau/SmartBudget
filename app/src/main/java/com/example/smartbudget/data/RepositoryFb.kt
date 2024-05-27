@@ -1,19 +1,19 @@
 package com.example.smartbudget.data
 
-import com.example.smartbudget.data.implementation.FirebaseDataRepositoryImpl
-import com.example.smartbudget.data.implementation.FirebaseRepositoryImpl
-import com.example.smartbudget.data.implementation.FirebaseSubscriptionDataRepoImpl
-import com.example.smartbudget.data.implementation.FirebaseSubscriptionRepoImpl
+import com.example.smartbudget.data.implementation.FirebaseTransactionDataRepo
+import com.example.smartbudget.data.implementation.FirebaseTransactionRepo
+import com.example.smartbudget.data.implementation.FirebaseSubscriptionDataRepo
+import com.example.smartbudget.data.implementation.FirebaseSubscriptionRepo
 import com.example.smartbudget.data.models.SubscriptionData
 import com.example.smartbudget.data.models.SubscriptionDataBase
 import com.example.smartbudget.data.models.TransactionData
 import javax.inject.Inject
 
 class RepositoryFb @Inject constructor(
-    private val firebaseDataRepository: FirebaseDataRepositoryImpl,
-    private val firebaseRepository: FirebaseRepositoryImpl,
-    private val firebaseSubscriptionRepo: FirebaseSubscriptionRepoImpl,
-    private val firebaseSubscriptionDataRepo: FirebaseSubscriptionDataRepoImpl
+    private val firebaseDataRepository: FirebaseTransactionDataRepo,
+    private val firebaseRepository: FirebaseTransactionRepo,
+    private val firebaseSubscriptionRepo: FirebaseSubscriptionRepo,
+    private val firebaseSubscriptionDataRepo: FirebaseSubscriptionDataRepo
 ) {
     suspend fun getTransactions(): MutableList<TransactionData> {
         return firebaseDataRepository.downloadTransactionData()

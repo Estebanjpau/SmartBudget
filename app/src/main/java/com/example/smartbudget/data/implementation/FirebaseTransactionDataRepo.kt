@@ -10,7 +10,7 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-class FirebaseDataRepositoryImpl @Inject constructor() {
+class FirebaseTransactionDataRepo @Inject constructor() {
 
     suspend fun downloadTransactionData(): MutableList<TransactionData> {
         return suspendCoroutine { continuation ->
@@ -18,7 +18,9 @@ class FirebaseDataRepositoryImpl @Inject constructor() {
             val userId = FirebaseAuth.getInstance().currentUser?.uid
             val userEmail = FirebaseAuth.getInstance().currentUser?.email
 
-            val collectionRef = db.collection("users").document(userEmail ?: userId.toString())
+            val collectionRef =
+                db.collection("users")
+                .document(userEmail ?: userId.toString())
                 .collection("transaction")
 
             val transactionList = mutableListOf<TransactionData>()

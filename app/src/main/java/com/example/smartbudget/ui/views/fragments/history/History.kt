@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.smartbudget.data.models.TransactionData
 import com.example.smartbudget.databinding.FragmentHistoryBinding
 import com.example.smartbudget.ui.views.contracts.FragmentContract
 import dagger.hilt.android.AndroidEntryPoint
@@ -62,7 +61,7 @@ class History : Fragment(), FragmentContract {
     }
 
     private fun setupRecyclerView() {
-        val getCurrentSession = viewModel.checkUserSession()
+        val getCurrentSession = viewModel.checkIfUserIsLogged()
         if (getCurrentSession) {
 
             viewModel.downloadTransactions()

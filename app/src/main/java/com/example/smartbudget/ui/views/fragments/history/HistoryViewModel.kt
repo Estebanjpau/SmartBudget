@@ -23,7 +23,7 @@ class HistoryViewModel @Inject constructor(
 
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
 
-    fun checkUserSession(): Boolean {
+    fun checkIfUserIsLogged(): Boolean {
         return firebaseAuthUseCases.validateSessionUseCase.checkUserSession()
     }
 

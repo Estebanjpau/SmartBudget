@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import com.example.smartbudget.R
 import com.example.smartbudget.databinding.FragmentHomeBinding
 import com.example.smartbudget.ui.views.contracts.FragmentContract
-import com.example.smartbudget.ui.utils.popups.DialogHomeNewTransaction
 import com.example.smartbudget.ui.views.fragments.home.subscriptions.Subscriptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
