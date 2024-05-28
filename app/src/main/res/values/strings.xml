@@ -6,9 +6,9 @@
     <string name="Cancel">Cancelar</string>
     <string name="Continue">Continuar</string>
     <string name="Back">Regresar</string>
-    <string name="Accept">Accept</string>
+    <string name="Accept">Aceptar</string>
 
-    <!-- TODO: Login/Signup -->
+    <!-- TODO: Login Module -->
     <string name="email_or_password_incorrect">Correo o contraseña incorrectos</string>
     <string name="haveAccount">¿Ya tienes una cuenta?, </string>
     <string name="Slogan">¡Gestiona tus finanzas sin estrés!</string>
@@ -66,7 +66,6 @@
     <!-- TODO: History Screen -->
     <string name="NoHistory">Ups, parece que aún no hay nada que mostrar</string>
     <string name="HistorySortBy">Ordenar por</string>
-
     <string name="WithoutBudgets">Ups, parece que aún no has definido ningun presupuesto</string>
     <string name="NewBudget">Crear presupuesto</string>
     <string name="FABBudget">Crear presupuesto</string>
@@ -85,5 +84,11 @@
     <string name="SettingsPrivacyPolicy">Políticas de privacidad</string>
     <string name="SettingsAccount">Cuenta</string>
     <string name="SettingsLogout">Cerrar Sesión</string>
+
+    <!-- TODO: Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
 
 </resources>

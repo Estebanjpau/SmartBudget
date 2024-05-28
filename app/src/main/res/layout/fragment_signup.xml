@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/LightBackground"
-    tools:context="com.example.smartbudget.ui.views.fragments.login.SignIn">
+    tools:context="com.example.smartbudget.ui.views.login.SignIn">
 
     <ScrollView
         android:layout_width="match_parent"

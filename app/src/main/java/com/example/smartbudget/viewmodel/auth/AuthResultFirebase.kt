@@ -2,14 +2,11 @@ package com.example.smartbudget.viewmodel.auth
 
 import android.content.ContentValues.TAG
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.smartbudget.di.SessionManager
-import com.example.smartbudget.ui.utils.SnackbarUtils
 import javax.inject.Inject
 import javax.inject.Singleton
-import kotlin.coroutines.coroutineContext
 
 @Singleton
 class AuthResultFirebase @Inject constructor() {
@@ -46,5 +43,12 @@ class AuthResultFirebase @Inject constructor() {
 
     fun handleLogoutResult(result: Result<Unit>) {
         _logoutResult.value = result
+
+        if (result.isSuccess) {
+            SessionManager.isLoggedIn = false
+        } else {
+            SessionManager.isLoggedIn = true
+            Log.e(TAG, "handleRegisterResult: ${result.exceptionOrNull()?.message} : Logout Failed")
+        }
     }
 }

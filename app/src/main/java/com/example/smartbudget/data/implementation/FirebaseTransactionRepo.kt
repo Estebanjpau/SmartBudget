@@ -1,7 +1,7 @@
 package com.example.smartbudget.data.implementation
 
 import android.util.Log
-import com.example.smartbudget.ui.utils.DateUtils
+import com.example.smartbudget.ui.utils.formatters.DateUtils
 import com.example.smartbudget.ui.utils.TimestampUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore

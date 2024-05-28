@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/LightBackground"
-    tools:context=".ui.views.fragments.home.subscriptions.Subscriptions">
+    tools:context=".ui.views.main.home.subscriptions.Subscriptions">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_noSubscriptions"

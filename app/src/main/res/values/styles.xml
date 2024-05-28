@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Base.Theme.SmartBudget" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.SmartBudgetMain" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Otros atributos del tema -->
     </style>
 
@@ -41,6 +41,10 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="Base.Theme.SmartBudget.TextL" parent="Base.Theme.SmartBudget.Text">
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <style name="Base.Theme.SmartBudget.TextM" parent="Base.Theme.SmartBudget.Text">
         <item name="android:textSize">16sp</item>
     </style>
@@ -54,6 +58,10 @@
     <style name="Base.Theme.SmartBudget.Paragraph">
         <item name="fontFamily">@font/manrope_regular</item>
         <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Base.Theme.SmartBudget.ParagraphL" parent="Base.Theme.SmartBudget.Paragraph">
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="Base.Theme.SmartBudget.ParagraphM" parent="Base.Theme.SmartBudget.Paragraph">

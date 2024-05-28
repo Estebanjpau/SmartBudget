@@ -2,4 +2,5 @@
 <resources>
     <!-- Tamaño deseado del espacio entre números -->
     <dimen name="number_picker_divider_height">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

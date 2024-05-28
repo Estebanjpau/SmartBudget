@@ -22,52 +22,69 @@ class AuthViewModel @Inject constructor(
     private val disposables = CompositeDisposable()
 
     fun register(email: String, password: String, username: String) {
-        _loadingState.postValue(true)
+        if (_loadingState.value != true) {
 
-        firebaseAuthUseCases.signupUseCase.signup(email, password, username)
-            .subscribeOn(Schedulers.io())
-            .observeOn(Schedulers.io())
-            .subscribe(
-                {
-                    authResultFirebase.handleRegisterResult(Result.success(Unit))
-                    _loadingState.postValue(false)
-                },
-                { error ->
-                    authResultFirebase.handleRegisterResult(Result.failure(error))
-                    _loadingState.postValue(false)
-                }
-            )
-            .let { disposables.add(it) }
+            _loadingState.postValue(true)
+
+            firebaseAuthUseCases.signupUseCase.signup(email, password, username)
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe(
+                    {
+                        authResultFirebase.handleRegisterResult(Result.success(Unit))
+                        _loadingState.postValue(false)
+                    },
+                    { error ->
+                        authResultFirebase.handleRegisterResult(Result.failure(error))
+                        _loadingState.postValue(false)
+                    }
+                )
+                .let { disposables.add(it) }
+        }
     }
 
     fun login(email: String, password: String) {
-        _loadingState.postValue(true)
+        if (_loadingState.value != true) {
+
+            _loadingState.postValue(true)
 
             firebaseAuthUseCases.loginUseCase.login(email, password)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                {
-                    authResultFirebase.handleLoginResult(Result.success(Unit))
-                    _loadingState.postValue(false)
-                },
-                { error ->
-                    authResultFirebase.handleLoginResult(Result.failure(error))
-                    _loadingState.postValue(false)
-                }
-            )
-            .let { disposables.add(it) }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    {
+                        authResultFirebase.handleLoginResult(Result.success(Unit))
+                        _loadingState.postValue(false)
+                    },
+                    { error ->
+                        authResultFirebase.handleLoginResult(Result.failure(error))
+                        _loadingState.postValue(false)
+                    }
+                )
+                .let { disposables.add(it) }
+        }
     }
 
     fun logout() {
-        firebaseAuthUseCases.logOutUseCase.logout()
-            .subscribeOn(Schedulers.io())
-            .observeOn(Schedulers.io())
-            .subscribe(
-                { authResultFirebase.handleLogoutResult(Result.success(Unit)) },
-                { error -> authResultFirebase.handleLogoutResult(Result.failure(error)) }
-            )
-            .let { disposables.add(it) }
+        if (_loadingState.value != true) {
+
+            _loadingState.postValue(true)
+
+            firebaseAuthUseCases.logOutUseCase.logout()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    {
+                        authResultFirebase.handleLogoutResult(Result.success(Unit))
+                        _loadingState.postValue(false)
+                    },
+                    { error ->
+                        authResultFirebase.handleLogoutResult(Result.failure(error))
+                        _loadingState.postValue(false)
+                    }
+                )
+                .let { disposables.add(it) }
+        }
     }
 
     override fun onCleared() {
