@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.smartbudget.R
 import com.example.smartbudget.databinding.FragmentSubscriptionsBinding
 import com.example.smartbudget.ui.utils.popup.subscriptions.DialogNewSubscription
+import com.example.smartbudget.ui.views.main.home.HomeViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -24,12 +25,17 @@ class Subscriptions : Fragment() {
     lateinit var binding: FragmentSubscriptionsBinding
     private lateinit var subscriptionAdapter: SubscriptionListAdapter
 
-    private val viewModel: SubscriptionViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels()
+
+    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            backToHome()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
 
     override fun onCreateView(
@@ -50,26 +56,28 @@ class Subscriptions : Fragment() {
         }
 
         binding.btnClose.setOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack()
-
-            requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationBar).visibility = View.VISIBLE
+            backToHome()
         }
 
-        viewModel.subscriptionList.observe(viewLifecycleOwner, Observer { list ->
+        viewModel.subscriptionList.observe(viewLifecycleOwner) { list ->
             list?.let {
                 if (it.isNotEmpty()) {
                     subscriptionAdapter.updateList(it)
                 }
             }
+        }
+    }
 
-        })
+    private fun backToHome() {
+        requireActivity().supportFragmentManager.popBackStack()
+        requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationBar).visibility = View.VISIBLE
     }
 
     private fun setupRecyclerView() {
         val getCurrentSession = viewModel.checkIfUserIsLogged()
         if (getCurrentSession) {
 
-            viewModel.subscriptionData()
+            viewModel.subscriptionUserData()
 
             subscriptionAdapter = SubscriptionListAdapter(mutableListOf())
 

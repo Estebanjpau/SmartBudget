@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import com.example.smartbudget.R
 import com.example.smartbudget.databinding.ActivityMainBinding
 import com.example.smartbudget.di.SessionManager
-import com.example.smartbudget.ui.views.main.contracts.FragmentContract
+import com.example.smartbudget.ui.views.contracts.FragmentContract
 import com.example.smartbudget.ui.views.main.budget.Budget
 import com.example.smartbudget.ui.views.main.FragmentFactory
 import com.example.smartbudget.ui.views.main.history.History
@@ -54,7 +54,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun replaceFragment(fragment: FragmentContract) {
+    fun emulateHistoryClick() {
+        binding.bottomNavigationBar.selectedItemId = R.id.history
+    }
+
+    fun replaceFragment(fragment: FragmentContract) {
         var fragmentValue: Int
 
         when (fragment) {

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.smartbudget.R
 import com.example.smartbudget.databinding.FragmentProfileBinding
-import com.example.smartbudget.ui.views.main.contracts.FragmentContract
+import com.example.smartbudget.ui.views.contracts.FragmentContract
 
 class Budget : Fragment(), FragmentContract {
 

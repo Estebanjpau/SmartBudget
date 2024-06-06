@@ -1,4 +1,4 @@
-package com.example.smartbudget.viewmodel.auth
+package com.example.smartbudget.ui.views.auth
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

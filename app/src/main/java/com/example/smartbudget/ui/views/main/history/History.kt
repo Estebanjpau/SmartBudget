@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.smartbudget.databinding.FragmentHistoryBinding
-import com.example.smartbudget.ui.views.main.contracts.FragmentContract
+import com.example.smartbudget.ui.views.contracts.FragmentContract
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,7 +37,6 @@ class History : Fragment(), FragmentContract {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         setupRecyclerView()
 

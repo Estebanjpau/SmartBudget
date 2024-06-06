@@ -5,10 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.smartbudget.R
 import com.example.smartbudget.databinding.FragmentHomeBinding
-import com.example.smartbudget.ui.views.main.contracts.FragmentContract
+import com.example.smartbudget.ui.views.contracts.FragmentContract
+import com.example.smartbudget.ui.views.main.activity.MainActivity
+import com.example.smartbudget.ui.views.main.history.History
+import com.example.smartbudget.ui.views.main.history.HistoryViewModel
 import com.example.smartbudget.ui.views.main.home.subscriptions.Subscriptions
+import com.example.smartbudget.ui.views.main.home.transactions.DialogHomeNewTransaction
+import com.example.smartbudget.ui.views.main.home.transactions.LastTransactionAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -19,22 +26,26 @@ class Home : Fragment(), FragmentContract {
     @Inject
     lateinit var dialogHomeNewTransaction: DialogHomeNewTransaction
 
-    private lateinit var binding: FragmentHomeBinding
+    private val viewModel: HomeViewModel by viewModels()
+    private val historyViewModel: HistoryViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var binding: FragmentHomeBinding
+    private lateinit var subcriptionPreviewAdapter: SubscriptionPreviewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setupRecyclerView()
+
+        historyViewModel.downloadTransactions()
 
         binding.btnNewMovement.setOnClickListener {
             showDialogNewTransaction()
@@ -43,8 +54,29 @@ class Home : Fragment(), FragmentContract {
         binding.tvSubscriptions.setOnClickListener{
             showSubscriptionScreen()
         }
-        binding.svOptions.setOnClickListener{
+        binding.rvSubscriptionsPreview.setOnClickListener {
             showSubscriptionScreen()
+        }
+
+        binding.tvSeeMoreTransactions.setOnClickListener {
+            val mainActivity = activity as MainActivity
+            mainActivity.emulateHistoryClick()
+        }
+
+        viewModel.subscriptionList.observe(
+            viewLifecycleOwner
+        ) { list ->
+            if (list.isNotEmpty()) subcriptionPreviewAdapter.updateList(list)
+        }
+
+        historyViewModel.transactionList.observe(
+            viewLifecycleOwner
+        ) { list ->
+            if (list.isNotEmpty()) {
+                val filteredList = list.sortedByDescending { it.timestamp }.take(5)
+                val adapter = LastTransactionAdapter(requireContext(), filteredList)
+                binding.lvLastTransactions.adapter = adapter
+            }
         }
     }
 
@@ -65,5 +97,20 @@ class Home : Fragment(), FragmentContract {
         transaction.commit()
 
         requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationBar).visibility = View.GONE
+    }
+
+    private fun setupRecyclerView() {
+        val getCurrentSession = viewModel.checkIfUserIsLogged()
+        if (getCurrentSession) {
+
+            viewModel.subscriptionUserData()
+
+            subcriptionPreviewAdapter = SubscriptionPreviewAdapter(mutableListOf())
+
+            binding.rvSubscriptionsPreview.apply {
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                adapter = subcriptionPreviewAdapter
+            }
+        }
     }
 }

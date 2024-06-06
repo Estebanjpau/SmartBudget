@@ -15,7 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.smartbudget.R
 import com.example.smartbudget.databinding.FragmentSignupBinding
 import com.example.smartbudget.ui.views.main.activity.MainActivity
-import com.example.smartbudget.viewmodel.auth.AuthViewModel
+import com.example.smartbudget.ui.views.auth.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

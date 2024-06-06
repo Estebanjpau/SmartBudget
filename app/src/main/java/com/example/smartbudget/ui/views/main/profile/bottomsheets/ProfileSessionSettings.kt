@@ -1,4 +1,4 @@
-package com.example.smartbudget.ui.views.main.profile
+package com.example.smartbudget.ui.views.main.profile.bottomsheets
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,11 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.example.smartbudget.databinding.ProfileSessionSettingsBinding
 import com.example.smartbudget.ui.utils.popup.SnackbarUtils
 import com.example.smartbudget.ui.views.main.activity.MainActivity
-import com.example.smartbudget.viewmodel.auth.AuthViewModel
+import com.example.smartbudget.ui.views.auth.AuthViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,7 +23,7 @@ class ProfileSessionSettings : BottomSheetDialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = ProfileSessionSettingsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -36,16 +35,16 @@ class ProfileSessionSettings : BottomSheetDialogFragment() {
             authViewModel.logout()
         }
 
-        authViewModel.authResultFirebase.logoutResult.observe(viewLifecycleOwner, Observer { result ->
+        authViewModel.authResultFirebase.logoutResult.observe(viewLifecycleOwner) { result ->
             if (result.isSuccess) {
                 val intent = Intent(requireContext(), MainActivity::class.java)
                 requireActivity().finish()
 
                 startActivity(intent)
             } else {
-                   SnackbarUtils.showCustomSnackbar(binding.root, "Invalid Logout")
+                SnackbarUtils.showCustomSnackbar(binding.root, "Invalid Logout")
             }
-        })
+        }
 
     }
 }

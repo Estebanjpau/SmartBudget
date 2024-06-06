@@ -13,7 +13,7 @@ object TimestampUtils {
             .build()
         val response = client.newCall(request).execute()
         val responseBody = response.body?.string()
-        val jsonObject = JSONObject(responseBody)
+        val jsonObject = JSONObject(responseBody ?: "")
         val timestamp = jsonObject.getLong("unixtime")
 
         return timestamp.toInt()

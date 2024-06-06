@@ -1,4 +1,4 @@
-package com.example.smartbudget.data.auth
+package com.example.smartbudget.data.repository.auth
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

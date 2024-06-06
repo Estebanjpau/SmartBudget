@@ -84,6 +84,8 @@
     <string name="SettingsPrivacyPolicy">Políticas de privacidad</string>
     <string name="SettingsAccount">Cuenta</string>
     <string name="SettingsLogout">Cerrar Sesión</string>
+    <string name="SettingsCurrencyUSD">Dólares</string>
+    <string name="SettingsCurrencyCOP">Pesos Colombianos</string>
 
     <!-- TODO: Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

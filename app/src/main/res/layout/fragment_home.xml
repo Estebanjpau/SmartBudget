@@ -30,7 +30,7 @@
             android:id="@+id/cv_balance"
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:layout_margin="20dp"
+            android:layout_margin="24dp"
             app:cardBackgroundColor="@color/black"
             app:cardCornerRadius="12dp"
             app:cardElevation="5dp"
@@ -54,7 +54,7 @@
             android:id="@+id/movements"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="24dp"
             android:elevation="3dp"
             app:cardCornerRadius="12dp"
             app:layout_constraintTop_toBottomOf="@id/cv_balance"
@@ -71,8 +71,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginTop="12dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -95,13 +95,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginHorizontal="50dp"
-                        android:layout_marginVertical="10dp"
+                        android:layout_marginVertical="12dp"
                         android:background="@drawable/shape_rounded"
                         android:layout_gravity="center_vertical"
                         android:text="@string/HomeNewTransaction"
                         style="@style/Base.Theme.SmartBudget.Button1"/>
-
-
 
             </LinearLayout>
 
@@ -112,7 +110,7 @@
             style="@style/Base.Theme.SmartBudget.Subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="24dp"
             android:gravity="center_horizontal"
             android:text="@string/HomelastTransactions"
             app:layout_constraintEnd_toEndOf="parent"
@@ -123,7 +121,7 @@
             android:id="@+id/cv_lastTransactions"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="24dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="12dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -137,13 +135,16 @@
                 android:orientation="vertical">
 
                 <ListView
-                    android:layout_width="wrap_content"
-                    android:layout_height="200dp" />
+                    android:id="@+id/lv_last_transactions"
+                    android:layout_width="match_parent"
+                    android:layout_height="148dp" />
 
                 <TextView
+                    android:id="@+id/tv_see_more_transactions"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginVertical="6dp"
                     style="@style/Base.Theme.SmartBudget.TextM"
                     android:textColor="@color/Blue"
                     android:text="@string/HomeSeeMore"/>
@@ -156,125 +157,23 @@
             style="@style/Base.Theme.SmartBudget.Subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="24dp"
             android:gravity="center_horizontal"
             android:text="@string/HomeSuscription"
-            app:layout_constraintBottom_toTopOf="@id/sv_options"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cv_lastTransactions" />
 
-        <HorizontalScrollView
-            android:id="@+id/sv_options"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_subscriptions_preview"
+            android:layout_marginHorizontal="18dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="18dp"
+            android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_subscriptions">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_1"
-                    android:layout_width="95dp"
-                    android:layout_height="100dp"
-                    android:layout_marginVertical="10dp"
-                    android:layout_marginHorizontal="5dp"
-                    android:backgroundTint="@color/lightRed"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="0dp"
-                    app:layout_constraintEnd_toStartOf="@id/cv_2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_subscriptions">
-
-                    <TextView
-                        style="@style/Base.Theme.SmartBudget.TextM"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="Opcion 1"
-                        android:textColor="@color/Red" />
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_2"
-                    android:layout_width="95dp"
-                    android:layout_height="100dp"
-                    android:layout_marginVertical="10dp"
-                    android:layout_marginHorizontal="5dp"
-                    app:cardBackgroundColor="@color/lightBlue"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="0dp"
-                    app:layout_constraintStart_toEndOf="@+id/cv_1"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_subscriptions">
-
-                    <TextView
-                        style="@style/Base.Theme.SmartBudget.TextM"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center_horizontal"
-                        android:text="Opcion 2"
-                        android:textColor="@color/Blue" />
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_3"
-                    android:layout_width="95dp"
-                    android:layout_height="100dp"
-                    android:layout_marginVertical="10dp"
-                    android:layout_marginHorizontal="5dp"
-                    app:cardBackgroundColor="@color/lightYellow"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="0dp"
-                    app:layout_constraintStart_toEndOf="@+id/cv_1"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_subscriptions">
-
-                    <TextView
-                        style="@style/Base.Theme.SmartBudget.TextM"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center_horizontal"
-                        android:text="Opcion 3"
-                        android:textColor="@color/Yellow" />
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_4"
-                    android:layout_width="95dp"
-                    android:layout_height="100dp"
-                    android:layout_marginVertical="10dp"
-                    android:layout_marginHorizontal="5dp"
-                    app:cardBackgroundColor="@color/lightPurple"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="0dp"
-                    app:layout_constraintStart_toEndOf="@+id/cv_1"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_subscriptions">
-
-                    <TextView
-                        style="@style/Base.Theme.SmartBudget.TextM"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center_horizontal"
-                        android:text="Opcion 3"
-                        android:textColor="@color/Purple" />
-
-                </androidx.cardview.widget.CardView>
-
-            </LinearLayout>
-
-        </HorizontalScrollView>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_subscriptions" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

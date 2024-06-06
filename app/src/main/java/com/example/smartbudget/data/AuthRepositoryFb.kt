@@ -1,7 +1,7 @@
 package com.example.smartbudget.data
 
-import com.example.smartbudget.data.auth.AuthFirebase
-import com.example.smartbudget.data.implementation.FirebaseTransactionRepo
+import com.example.smartbudget.data.repository.auth.AuthFirebase
+import com.example.smartbudget.data.repository.transaction.FirebaseTransactionRepo
 import io.reactivex.rxjava3.core.Completable
 import javax.inject.Inject
 

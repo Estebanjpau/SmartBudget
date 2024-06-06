@@ -38,28 +38,6 @@ class DialogNewSubscription @Inject constructor() : DialogFragment() {
         dialog?.window?.setBackgroundDrawableResource(R.drawable.rounded_dialog)
         dialog?.window?.setDimAmount(0.5f)
 
-        CoroutineScope(Dispatchers.IO).launch {
-            subscriptionList = viewModel.getSubscriptionslist()
-
-            val subscriptionTitlesList = subscriptionList.mapNotNull { it.title }
-
-            withContext(Dispatchers.Main) {
-                subscriptionAdapter =
-                    SubscriptionAutoCompleteAdapter(requireContext(), subscriptionTitlesList)
-
-                binding.acSubscriptionTitle.setAdapter(subscriptionAdapter)
-
-                binding.acSubscriptionTitle.setOnItemClickListener { _, _, position, _ ->
-                    val selectedTitle = subscriptionList[position].title
-                    val selectedSubscription = subscriptionList.find { it.title == selectedTitle }
-
-                    selectedSubscription?.amount?.toString().let { binding.etSubscriptionAmount.setText(it!!) }
-                    binding.spinnerSubscriptionCategory.setSelection(viewModel.categories.indexOf(selectedSubscription?.category))
-                    binding.acSubscriptionTitle.setText(selectedSubscription?.title.toString())
-                }
-            }
-        }
-
         var background = "white"
         var colorText = ""
         binding.cvBgcWhite.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.dark_grey))
@@ -136,6 +114,28 @@ class DialogNewSubscription @Inject constructor() : DialogFragment() {
 
         binding.tvCancel.setOnClickListener {
             dismiss()
+        }
+
+        CoroutineScope(Dispatchers.IO).launch {
+            subscriptionList = viewModel.getSubscriptionslist()
+
+            val subscriptionTitlesList = subscriptionList.mapNotNull { it.title }
+
+            withContext(Dispatchers.Main) {
+                subscriptionAdapter =
+                    SubscriptionAutoCompleteAdapter(requireContext(), subscriptionTitlesList)
+
+                binding.acSubscriptionTitle.setAdapter(subscriptionAdapter)
+
+                binding.acSubscriptionTitle.setOnItemClickListener { _, _, position, _ ->
+                    val selectedTitle = subscriptionList[position].title
+                    val selectedSubscription = subscriptionList.find { it.title == selectedTitle }
+
+                    selectedSubscription?.amount?.toString().let { binding.etSubscriptionAmount.setText(it!!) }
+                    binding.spinnerSubscriptionCategory.setSelection(viewModel.categories.indexOf(selectedSubscription?.category))
+                    binding.acSubscriptionTitle.setText(selectedSubscription?.title.toString())
+                }
+            }
         }
 
         val dialog = builder.create()

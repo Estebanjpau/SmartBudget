@@ -9,7 +9,6 @@ object TextUtils {
     fun getDescriptionInputFilters(maxCharacters: Int): Array<InputFilter> {
         return arrayOf(
             InputFilter.LengthFilter(maxCharacters),
-            AllCaps(),
             CapitalizeInputFilter()
         )
     }

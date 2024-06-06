@@ -1,4 +1,4 @@
-package com.example.smartbudget.ui.views.main.home
+package com.example.smartbudget.ui.views.main.home.transactions
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -58,7 +58,7 @@ class DialogHomeNewTransaction @Inject constructor(private val authUseCases: Fir
             dismiss()
         }
 
-        binding.etDescription.filters = TextUtils.getDescriptionInputFilters(20)
+        binding.etDescription.filters = TextUtils.getDescriptionInputFilters(30)
 
         val dialog = builder.create()
         dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_dialog)

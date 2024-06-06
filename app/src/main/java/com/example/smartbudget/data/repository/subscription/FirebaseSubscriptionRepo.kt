@@ -1,4 +1,4 @@
-package com.example.smartbudget.data.implementation
+package com.example.smartbudget.data.repository.subscription
 
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth

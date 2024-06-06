@@ -2,14 +2,12 @@ package com.example.smartbudget.ui.views.main
 
 import com.example.smartbudget.R
 import com.example.smartbudget.ui.views.main.budget.Budget
-import com.example.smartbudget.ui.views.main.contracts.FragmentContract
+import com.example.smartbudget.ui.views.contracts.FragmentContract
 import com.example.smartbudget.ui.views.main.history.History
 import com.example.smartbudget.ui.views.main.home.Home
 import com.example.smartbudget.ui.views.main.profile.Profile
 
 object FragmentFactory {
-
-    private var lastActionId: Int? = null
 
     fun createFragment(fragmentId: Int): FragmentContract {
 

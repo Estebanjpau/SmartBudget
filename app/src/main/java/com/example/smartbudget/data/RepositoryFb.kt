@@ -1,9 +1,9 @@
 package com.example.smartbudget.data
 
-import com.example.smartbudget.data.implementation.FirebaseTransactionDataRepo
-import com.example.smartbudget.data.implementation.FirebaseTransactionRepo
-import com.example.smartbudget.data.implementation.FirebaseSubscriptionDataRepo
-import com.example.smartbudget.data.implementation.FirebaseSubscriptionRepo
+import com.example.smartbudget.data.repository.transaction.FirebaseTransactionDataRepo
+import com.example.smartbudget.data.repository.transaction.FirebaseTransactionRepo
+import com.example.smartbudget.data.repository.subscription.FirebaseSubscriptionDataRepo
+import com.example.smartbudget.data.repository.subscription.FirebaseSubscriptionRepo
 import com.example.smartbudget.data.models.SubscriptionData
 import com.example.smartbudget.data.models.SubscriptionDataBase
 import com.example.smartbudget.data.models.TransactionData

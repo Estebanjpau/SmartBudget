@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.smartbudget.databinding.FragmentProfileBinding
-import com.example.smartbudget.ui.views.main.contracts.FragmentContract
+import com.example.smartbudget.ui.views.contracts.FragmentContract
+import com.example.smartbudget.ui.views.main.profile.bottomsheets.ProfileSecuritySettings
+import com.example.smartbudget.ui.views.main.profile.bottomsheets.ProfileSessionSettings
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,7 +29,7 @@ class Profile : Fragment(), FragmentContract {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -53,7 +55,7 @@ class Profile : Fragment(), FragmentContract {
     }
 
     private fun <T : BottomSheetDialogFragment> showBottomSheetDialog(fragmentClass: Class<T>) {
-        val fragment = fragmentClass.newInstance()
+        val fragment = fragmentClass.getDeclaredConstructor().newInstance()
         fragment.show(parentFragmentManager, fragment.tag)
     }
 }

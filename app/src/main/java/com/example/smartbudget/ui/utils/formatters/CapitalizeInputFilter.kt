@@ -18,7 +18,16 @@ class CapitalizeInputFilter : InputFilter {
         }
 
         val input = source.subSequence(start, end).toString()
-        val filteredInput = input.lowercase().replaceFirstChar { it.uppercase() }
-        return if (filteredInput.matches(ALLOWED_CHARACTERS_REGEX)) filteredInput else ""
+
+        val result = StringBuilder(dest).apply {
+            replace(dstart, dend, input)
+        }.toString()
+
+        val lowercasedResult = result.lowercase()
+
+        val finalResult = lowercasedResult.replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
+
+        val newText = finalResult.substring(dstart, dstart + input.length)
+        return newText
     }
 }

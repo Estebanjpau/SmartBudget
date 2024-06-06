@@ -3,6 +3,7 @@ package com.example.smartbudget.ui.utils.popup.subscriptions
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.smartbudget.data.models.SubscriptionData
 import com.example.smartbudget.data.models.SubscriptionDataBase
 import com.example.smartbudget.di.FirebaseAuthUseCases
 import com.example.smartbudget.di.FirebaseUseCases
@@ -16,6 +17,9 @@ class DialogNewSubscriptionViewModel @Inject constructor(
     private val firebaseAuthUseCases: FirebaseAuthUseCases,
     private val firebaseUseCases: FirebaseUseCases
 ) : ViewModel() {
+
+    val subscriptionDataList: LiveData<MutableList<SubscriptionDataBase>> get() = _subscriptionDataList
+    private val _subscriptionDataList = MutableLiveData<MutableList<SubscriptionDataBase>>()
 
     val categories = arrayOf("Comida", "Educación", "Entretenimiento", "Hogar", "Medicina", "Mascota", "Ocio", "Otros", "Ropa", "Salud", "Transporte", "Viajes")
     suspend fun getSubscriptionslist(): MutableList<SubscriptionDataBase> {
